@@ -1,0 +1,49 @@
+---
+description: debian/changelog vs git tags; commits, release, large-change bumps
+alwaysApply: true
+---
+
+# Version
+
+`VERSION` is written by the pre-commit hook from `debian/changelog` — never edit
+it by hand. Prefer `dch` for changelog edits.
+
+- **Most work**: keep `debian/changelog` in sync (add bullets as you go).
+- **Solidified** (matching `vX.Y.Z` tag exists): never edit that stanza. Bump /
+  open the next version when you need changelog room.
+- **Open (untagged)**: add bullets under the current stanza.
+- After a solidified tag, the next real change opens the next semver in the same
+  feature commit(s). No standalone “open version” commit; no tag until Release.
+- **Release**: only when the user asks — follow **Release** below.
+
+## Commits
+
+- Always commit **verbosely** (`git commit -v` / a detailed message).
+- Not after every edit — at natural checkpoints (e.g. after a related test suite
+  passes). Prefer doing that commit proactively when the moment fits.
+- Do **not** put version numbers in ordinary commit subjects (e.g. avoid
+  `Open 0.0.3:` / `Open vX.Y.Z:`). Opening a changelog stanza is enough; only
+  **Release** commits need to call out the version being shipped.
+
+## Release
+
+Only when the user asks to release/publish. **Do not bump the version** during
+release (ship the current open changelog version as-is).
+
+1. **Pre-release**: commit remaining work **verbosely** with a normal subject
+   (never `[release]` — that prefix is only for step 2).
+2. **Release process** — zero or one `[release]` commit (failures **amend** it;
+   never add a second):
+   - Satisfy `zfr lint -w` (fix until it passes).
+   - If the tree is dirty with release-process fixes: commit or amend
+     `[release] …` (verbose body). If already clean, skip.
+   - Run `zfr publish -f`.
+   - If publish **fails**: fix, amend the `[release]` commit (create it first if
+     none yet), then restart this process from lint.
+   - If publish **succeeds**: stop.
+
+## Large changes
+
+- If the tree is dirty, commit that work first (under the open version, or bump
+  if the current stanza is solidified — never edit a solidified stanza).
+- Then bump **minor** for the large change itself.

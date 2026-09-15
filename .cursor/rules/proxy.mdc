@@ -1,0 +1,23 @@
+---
+description: HTTP proxy for sites commonly blocked in China (Google, Twitter, YouTube, …)
+alwaysApply: true
+---
+
+# HTTP proxy (China)
+
+Many sites are unreachable without a local proxy (Google, Twitter/X, YouTube,
+npm registry mirrors that fail, VS Marketplace, Open VSX, AI APIs, etc.).
+
+- Default proxy: **`http://localhost:8118`**
+- Prefer env when calling tools that honor it:
+
+```bash
+export http_proxy=http://localhost:8118
+export https_proxy=http://localhost:8118
+export HTTP_PROXY=http://localhost:8118
+export HTTPS_PROXY=http://localhost:8118
+```
+
+- CLI example: `googletranslator` and similar fetchers — pass/configure
+  **`http-proxy http://localhost:8118`** (see also translations.mdc for adoc).
+- Do not assume raw access to blocked hosts will work; set the proxy first.

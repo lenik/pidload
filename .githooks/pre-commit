@@ -1,0 +1,50 @@
+#!/bin/bash
+# Update VERSION from the latest debian/changelog entry.
+# VERSION is allowed to differ from git describe (meson prefers git).
+#
+# Enable: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+script_dir=$(cd "$(dirname "$0")" && pwd)
+if [ "$(basename "$script_dir")" = .githooks ]; then
+    root=$(cd "$script_dir/.." && pwd)
+elif [ "$(basename "$script_dir")" = hooks ] &&
+    [ "$(basename "$(dirname "$script_dir")")" = .git ]; then
+    root=$(git rev-parse --show-toplevel)
+else
+    root=$script_dir
+fi
+
+changelog=$root/debian/changelog
+version_file=$root/VERSION
+
+if [ ! -f "$changelog" ]; then
+    exit 0
+fi
+
+if command -v dpkg-parsechangelog >/dev/null 2>&1; then
+    ver=$(dpkg-parsechangelog -l "$changelog" -S Version)
+else
+    ver=$(sed -n 's/^[^[:space:]]* (\([^)]*\)).*/\1/p;q' "$changelog")
+fi
+ver=${ver#*:}
+
+if [ -z "$ver" ]; then
+    echo "pre-commit: could not parse version from $changelog" >&2
+    exit 1
+fi
+
+old=
+if [ -f "$version_file" ]; then
+    old=$(head -n1 "$version_file")
+fi
+
+if [ "$old" != "$ver" ]; then
+    printf '%s\n' "$ver" >"$version_file"
+    echo "pre-commit: VERSION -> $ver"
+fi
+
+if [ -n "${GIT_INDEX_FILE-}" ] && command -v git >/dev/null 2>&1; then
+    git -C "$root" add -- "$version_file"
+fi

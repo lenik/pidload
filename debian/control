@@ -1,0 +1,18 @@
+Source: pidload
+Section: utils
+Priority: optional
+Maintainer: Lenik <pidload@bodz.net>
+Build-Depends: debhelper-compat (= 13), meson, ninja-build, pkgconf, libbas-c-dev, asciidoctor
+Standards-Version: 4.6.0
+Homepage: https://github.com/lenik/pidload
+Rules-Requires-Root: no
+
+Package: pidload
+Architecture: any
+Depends:
+    ${shlibs:Depends},
+    ${misc:Depends}
+Description: Simple C CLI project template with example app
+ pidload is a Meson-based template for small C command-line utilities
+ (no shared/static library packaging). It ships the pidload example
+ application, AsciiDoc man pages, bash completion, and Debian packaging.

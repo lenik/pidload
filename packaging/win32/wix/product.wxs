@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+      Id="*"
+      Name="$(var.PkgName)"
+      Language="1033"
+      Version="$(var.PkgVersion)"
+      Manufacturer="Lenik"
+      UpgradeCode="A1B2C3D4-E5F6-7890-ABCD-EF1234567890">
+    <Package
+        InstallerVersion="500"
+        Compressed="yes"
+        InstallScope="perUser"
+        Description="$(var.PkgName) $(var.PkgVersion)" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="INSTALLDIR" Name="$(var.PkgName)">
+          <Directory Id="BINDIR" Name="bin" />
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="Main" Title="$(var.PkgName)" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+  </Product>
+</Wix>
