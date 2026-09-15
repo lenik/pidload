@@ -1,0 +1,6 @@
+src/options.cpp
+src/collector.cpp
+src/main_frame.cpp
+src/chart_panel.cpp
+src/dialogs.cpp
+src/wx_tr.hpp

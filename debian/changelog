@@ -1,3 +1,11 @@
+pidload (0.0.2) unstable; urgency=medium
+
+  * Add gettext catalogs for L1 locales (ar, de, en, es_MX, fr, it, ja, ko,
+    zh_CN) and mark UI/CLI strings for translation.
+  * Add whole-document man page translations under man/<locale>/.
+
+ -- Lenik (谢继雷) <lenik@bodz.net>  Wed, 16 Sep 2026 00:50:00 +0800
+
 pidload (0.0.1) unstable; urgency=medium
 
   * Initial release: wxWidgets process and traffic monitor.

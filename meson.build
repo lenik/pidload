@@ -60,6 +60,8 @@ x11_dep = dependency('x11', required: true)
 
 inc = include_directories('src', '.')
 
+subdir('po')
+
 pidload_sources = [
     'src/pidload.cpp',
     'src/options.cpp',
@@ -121,6 +123,53 @@ custom_target(
     build_by_default: true,
     install: true,
     install_dir: mandir / 'man1',
+)
+
+manpage_langs = ['ar', 'de', 'es_MX', 'fr', 'it', 'ja', 'ko', 'zh_CN']
+foreach lang : manpage_langs
+    custom_target(
+        'pidload-man-' + lang,
+        input: 'man' / lang / 'pidload.adoc',
+        output: 'pidload.1.' + lang,
+        command: [
+            asciidoctor,
+            '-b', 'manpage',
+            '-a', 'project-version=' + meson.project_version(),
+            '-a', 'project-year=@0@'.format(project_year),
+            '-a', 'project-author=' + project_author,
+            '-a', 'project-email=' + project_email,
+            '-o', '@OUTPUT@',
+            '@INPUT@',
+        ],
+        build_by_default: true,
+    )
+endforeach
+
+meson.add_install_script(
+    'sh',
+    '-euc',
+    '''
+        build="@0@"
+        mandir="@1@"
+        for lang in ar de es_MX fr it ja ko zh_CN; do
+            dest="${DESTDIR}${mandir}/${lang}/man1"
+            mkdir -p "$dest"
+            install -m644 "$build/pidload.1.$lang" "$dest/pidload.1"
+        done
+    '''.format(meson.project_build_root(), mandir),
+)
+
+run_target(
+    'posync',
+    command: [
+        'bash',
+        '-eu',
+        '-c',
+        'cd "$1/po" && xgettext --from-code=UTF-8 --keyword=_ --keyword=tr --language=C++ --directory=.. --output=pidload.pot --files-from=POTFILES --package-name=pidload --package-version="$2" --no-wrap && while IFS= read -r lang; do [ -n "$lang" ] || continue; case "$lang" in "#"* ) continue ;; esac; po_file="$lang.po"; if [ ! -f "$po_file" ]; then msginit --no-translator --no-wrap --input=pidload.pot --locale="$lang" --output-file="$po_file"; fi; msgmerge --update --backup=none --no-wrap "$po_file" pidload.pot; msgattrib --no-obsolete --no-wrap --output-file="$po_file" "$po_file"; done < LINGUAS',
+        'posync',
+        meson.project_source_root(),
+        meson.project_version(),
+    ],
 )
 
 subdir('tests')

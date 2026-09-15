@@ -8,6 +8,7 @@
 #include "process_match.hpp"
 #include "util.hpp"
 
+#include <bas/locale/i18n.h>
 #include <bas/log/uselog.h>
 
 #include <arpa/inet.h>
@@ -31,49 +32,49 @@ static uint64_t delta_u64(uint64_t now, uint64_t prev) {
 const char *series_kind_name(SeriesKind k) {
     switch (k) {
     case SeriesKind::DevRead:
-        return "read";
+        return _("read");
     case SeriesKind::DevWrite:
-        return "write";
+        return _("write");
     case SeriesKind::IfaceIn:
-        return "in";
+        return _("in");
     case SeriesKind::IfaceOut:
-        return "out";
+        return _("out");
     case SeriesKind::IfaceDrop:
-        return "drop";
+        return _("drop");
     case SeriesKind::AddrIn:
-        return "in";
+        return _("in");
     case SeriesKind::AddrOut:
-        return "out";
+        return _("out");
     case SeriesKind::PidCpu:
-        return "cpu";
+        return _("cpu");
     case SeriesKind::PidRead:
-        return "read";
+        return _("read");
     case SeriesKind::PidWrite:
-        return "write";
+        return _("write");
     case SeriesKind::CpuOverall:
-        return "overall";
+        return _("overall");
     case SeriesKind::CpuCore:
-        return "core";
+        return _("core");
     case SeriesKind::MemUsed:
-        return "used";
+        return _("used");
     case SeriesKind::MemAvail:
-        return "avail";
+        return _("avail");
     case SeriesKind::MemSwap:
-        return "swap";
+        return _("swap");
     case SeriesKind::ThreadsAlive:
-        return "alive";
+        return _("alive");
     case SeriesKind::ThreadsWait:
-        return "wait";
+        return _("wait");
     case SeriesKind::ThreadsTotal:
-        return "total";
+        return _("total");
     case SeriesKind::FdOpen:
-        return "open";
+        return _("open");
     case SeriesKind::ConnAlive:
-        return "alive";
+        return _("alive");
     case SeriesKind::ConnWait:
-        return "wait";
+        return _("wait");
     case SeriesKind::ConnTotal:
-        return "total";
+        return _("total");
     }
     return "?";
 }
@@ -81,27 +82,27 @@ const char *series_kind_name(SeriesKind k) {
 const char *chart_type_title(ChartType t) {
     switch (t) {
     case ChartType::Device:
-        return "Device I/O";
+        return _("Device I/O");
     case ChartType::Network:
-        return "Network";
+        return _("Network");
     case ChartType::Address:
-        return "Address";
+        return _("Address");
     case ChartType::ProcessCpu:
-        return "Process CPU";
+        return _("Process CPU");
     case ChartType::ProcessIo:
-        return "Process I/O";
+        return _("Process I/O");
     case ChartType::SystemCpu:
-        return "CPU";
+        return _("CPU");
     case ChartType::SystemMemory:
-        return "Memory";
+        return _("Memory");
     case ChartType::Threads:
-        return "Threads";
+        return _("Threads");
     case ChartType::NumFd:
-        return "File Descriptors";
+        return _("File Descriptors");
     case ChartType::Connections:
-        return "Connections";
+        return _("Connections");
     }
-    return "Chart";
+    return _("Chart");
 }
 
 Collector::Collector(const Options &opt) : opt_(opt) {

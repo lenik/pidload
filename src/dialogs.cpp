@@ -5,6 +5,7 @@
  */
 
 #include "dialogs.hpp"
+#include "wx_tr.hpp"
 
 #include <wx/button.h>
 #include <wx/choice.h>
@@ -70,13 +71,13 @@ std::vector<ProcRow> list_processes() {
 class ProcessPickerDialog : public wxDialog {
 public:
     explicit ProcessPickerDialog(wxWindow *parent)
-        : wxDialog(parent, wxID_ANY, "Open Process", wxDefaultPosition, wxSize(560, 420),
+        : wxDialog(parent, wxID_ANY, tr("Open Process"), wxDefaultPosition, wxSize(560, 420),
                    wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER) {
         list_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                                wxLC_REPORT | wxLC_SINGLE_SEL);
-        list_->AppendColumn("PID", wxLIST_FORMAT_LEFT, 80);
-        list_->AppendColumn("UID", wxLIST_FORMAT_LEFT, 70);
-        list_->AppendColumn("Command", wxLIST_FORMAT_LEFT, 360);
+        list_->AppendColumn(tr("PID"), wxLIST_FORMAT_LEFT, 80);
+        list_->AppendColumn(tr("UID"), wxLIST_FORMAT_LEFT, 70);
+        list_->AppendColumn(tr("Command"), wxLIST_FORMAT_LEFT, 360);
 
         auto procs = list_processes();
         long i = 0;
@@ -89,8 +90,8 @@ public:
 
         auto *btns = CreateSeparatedButtonSizer(wxOK | wxCANCEL);
         auto *root = new wxBoxSizer(wxVERTICAL);
-        root->Add(new wxStaticText(this, wxID_ANY, "Select a process to monitor:"), 0,
-                  wxALL, 8);
+        root->Add(new wxStaticText(this, wxID_ANY, tr("Select a process to monitor:")), 0, wxALL,
+                  8);
         root->Add(list_, 1, wxEXPAND | wxLEFT | wxRIGHT, 8);
         if (btns) {
             root->Add(btns, 0, wxEXPAND | wxALL, 8);
@@ -126,35 +127,35 @@ std::vector<pid_t> ShowProcessPicker(wxWindow *parent) {
 }
 
 pid_t ShowOpenPidDialog(wxWindow *parent) {
-    wxTextEntryDialog dlg(parent, "Enter process ID:", "Open PID");
+    wxTextEntryDialog dlg(parent, tr("Enter process ID:"), tr("Open PID"));
     if (dlg.ShowModal() != wxID_OK) {
         return -1;
     }
     long pid = 0;
     if (!dlg.GetValue().ToLong(&pid) || pid <= 0) {
-        wxMessageBox("Invalid PID.", "pidload", wxOK | wxICON_WARNING, parent);
+        wxMessageBox(tr("Invalid PID."), "pidload", wxOK | wxICON_WARNING, parent);
         return -1;
     }
     return static_cast<pid_t>(pid);
 }
 
 bool ShowAddCaptureDialog(wxWindow *parent, CaptureRequest *out) {
-    wxDialog dlg(parent, wxID_ANY, "Add Capture", wxDefaultPosition, wxSize(420, 160));
+    wxDialog dlg(parent, wxID_ANY, tr("Add Capture"), wxDefaultPosition, wxSize(420, 160));
     auto *kind = new wxChoice(&dlg, wxID_ANY);
-    kind->Append("Device");
-    kind->Append("Interface");
-    kind->Append("Address");
-    kind->Append("Process NAME");
+    kind->Append(tr("Device"));
+    kind->Append(tr("Interface"));
+    kind->Append(tr("Address"));
+    kind->Append(tr("Process NAME"));
     kind->SetSelection(0);
     auto *value = new wxTextCtrl(&dlg, wxID_ANY);
-    auto *hint = new wxStaticText(
-        &dlg, wxID_ANY, "NAME: pid, exe, path, window title, or glob (* ?)");
+    auto *hint = new wxStaticText(&dlg, wxID_ANY,
+                                  tr("NAME: pid, exe, path, window title, or glob (* ?)"));
 
     auto *form = new wxFlexGridSizer(2, 2, 8, 8);
     form->AddGrowableCol(1, 1);
-    form->Add(new wxStaticText(&dlg, wxID_ANY, "Type:"), 0, wxALIGN_CENTER_VERTICAL);
+    form->Add(new wxStaticText(&dlg, wxID_ANY, tr("Type:")), 0, wxALIGN_CENTER_VERTICAL);
     form->Add(kind, 1, wxEXPAND);
-    form->Add(new wxStaticText(&dlg, wxID_ANY, "Value:"), 0, wxALIGN_CENTER_VERTICAL);
+    form->Add(new wxStaticText(&dlg, wxID_ANY, tr("Value:")), 0, wxALIGN_CENTER_VERTICAL);
     form->Add(value, 1, wxEXPAND);
 
     auto *btns = dlg.CreateSeparatedButtonSizer(wxOK | wxCANCEL);

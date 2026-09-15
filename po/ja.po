@@ -1,0 +1,614 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pidload 0.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-16 00:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/options.cpp:23
+msgid ""
+"Usage: pidload [OPTION]... [NAME]...\n"
+"Monitor process load and selected device/network traffic in a wxWidgets window.\n"
+msgstr ""
+"使用法: pidload [オプション]... [名前]...\n"
+"wxWidgets ウィンドウでプロセス負荷と選択したデバイス/ネットワークのトラフィックを監視します。\n"
+
+#: src/options.cpp:27
+msgid ""
+"Each NAME matches processes, tried as:\n"
+"  pid, executable name, executable path, window title,\n"
+"  executable glob name, executable glob path, window glob title.\n"
+"Glob characters: * ?   Example: pidload editor   pidload '*term*'\n"
+msgstr ""
+"各「名前」は次の順でプロセスと照合されます:\n"
+"  PID、実行ファイル名、実行ファイルのパス、ウィンドウタイトル、\n"
+"  実行ファイル名/パス/ウィンドウタイトルの glob パターン。\n"
+"glob 文字: * ?   例: pidload editor   pidload '*term*'\n"
+
+#: src/options.cpp:34
+msgid "block device I/O to monitor (repeatable)\n"
+msgstr "監視するブロックデバイス I/O（複数指定可）\n"
+
+#: src/options.cpp:36
+msgid "netdev to monitor, or \"all\" (repeatable)\n"
+msgstr "監視するネットワークデバイス、または「all」（複数指定可）\n"
+
+#: src/options.cpp:38
+msgid "IPv4/IPv6 address traffic to monitor (repeatable)\n"
+msgstr "監視する IPv4/IPv6 アドレスのトラフィック（複数指定可）\n"
+
+#: src/options.cpp:40
+msgid "chart system CPU (overall and each core)\n"
+msgstr "システム CPU をグラフ表示（全体および各コア）\n"
+
+#: src/options.cpp:42
+msgid "chart system memory and swap\n"
+msgstr "システムメモリとスワップをグラフ表示\n"
+
+#: src/options.cpp:44
+msgid "chart thread counts (alive / wait / total opened)\n"
+msgstr "スレッド数をグラフ表示（稼働中 / 待機 / オープン総数）\n"
+
+#: src/options.cpp:46
+msgid "chart open file-descriptor counts\n"
+msgstr "開いているファイル記述子数をグラフ表示\n"
+
+#: src/options.cpp:48
+msgid "chart net connections (alive / wait / total)\n"
+msgstr "ネットワーク接続をグラフ表示（稼働中 / 待機 / 合計）\n"
+
+#: src/options.cpp:50
+msgid "sample interval (default: 2s)\n"
+msgstr "サンプリング間隔（既定値: 2s）\n"
+
+#: src/options.cpp:52
+msgid "default visible window; session history stays in memory (default: 3min)\n"
+msgstr "既定の表示時間範囲。セッション履歴はメモリに保持（既定値: 3min）\n"
+
+#: src/options.cpp:54
+msgid "directory prefix for interval logs (name.pid.log)\n"
+msgstr "間隔ログのディレクトリ接頭辞（name.pid.log）\n"
+
+#: src/options.cpp:56
+msgid "repeat for more verbose logging\n"
+msgstr "繰り返すとログがさらに詳細になります\n"
+
+#: src/options.cpp:58
+msgid "show fewer logging messages\n"
+msgstr "ログメッセージを減らします\n"
+
+#: src/options.cpp:60
+msgid "display this help and exit\n"
+msgstr "このヘルプを表示して終了します\n"
+
+#: src/options.cpp:62
+msgid "output version information and exit\n"
+msgstr "バージョン情報を表示して終了します\n"
+
+#: src/options.cpp:64
+msgid "Duration units: ms, s/sec (default), m/min, h. Examples: .5s, 5min.\n"
+msgstr "時間単位: ms、s/sec（既定）、m/min、h。例: .5s、5min。\n"
+
+#: src/options.cpp:66
+#, c-format
+msgid "Report bugs to: <%s>\n"
+msgstr "バグの報告先: <%s>\n"
+
+#: src/options.cpp:137
+#, c-format
+msgid "pidload: invalid interval: %s\n"
+msgstr "pidload: 間隔が無効です: %s\n"
+
+#: src/options.cpp:146
+#, c-format
+msgid "pidload: invalid window: %s\n"
+msgstr "pidload: 表示時間範囲が無効です: %s\n"
+
+#: src/options.cpp:166
+#, c-format
+msgid "Copyright (C) %d %s\n"
+msgstr "著作権 (C) %d %s\n"
+
+#: src/options.cpp:167
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "ライセンス AGPL-3.0 以降: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+
+#: src/options.cpp:169
+msgid "This is free software: you are free to change and redistribute it.\n"
+msgstr "これは自由ソフトウェアです。自由に変更、再配布できます。\n"
+
+#: src/options.cpp:171
+msgid "This project opposes AI exploitation and AI hegemony.\n"
+msgstr "このプロジェクトは AI による搾取と AI の覇権に反対します。\n"
+
+#: src/options.cpp:172
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "このプロジェクトは、無思慮な MIT 方式のライセンスと政治的に無邪気な BSD 方式のライセンスを拒否します。\n"
+
+#: src/options.cpp:175
+msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr "法律で認められる範囲において、一切の保証はありません。\n"
+
+#: src/options.cpp:203
+#, c-format
+msgid "pidload: window must be >= interval\n"
+msgstr "pidload: 表示時間範囲は間隔以上でなければなりません\n"
+
+#: src/options.cpp:211
+#, c-format
+msgid "pidload: nothing to monitor; give NAME(s) and/or -d/-i/-a/-c/-m/-T/-F/-C\n"
+msgstr "pidload: 監視対象がありません。名前または -d/-i/-a/-c/-m/-T/-F/-C を指定してください\n"
+
+#: src/collector.cpp:35 src/collector.cpp:51
+msgid "read"
+msgstr "読み取り"
+
+#: src/collector.cpp:37 src/collector.cpp:53
+msgid "write"
+msgstr "書き込み"
+
+#: src/collector.cpp:39 src/collector.cpp:45
+msgid "in"
+msgstr "受信"
+
+#: src/collector.cpp:41 src/collector.cpp:47
+msgid "out"
+msgstr "送信"
+
+#: src/collector.cpp:43
+msgid "drop"
+msgstr "破棄"
+
+#: src/collector.cpp:49
+msgid "cpu"
+msgstr "CPU"
+
+#: src/collector.cpp:55
+msgid "overall"
+msgstr "全体"
+
+#: src/collector.cpp:57
+msgid "core"
+msgstr "コア"
+
+#: src/collector.cpp:59
+msgid "used"
+msgstr "使用済み"
+
+#: src/collector.cpp:61
+msgid "avail"
+msgstr "空き"
+
+#: src/collector.cpp:63
+msgid "swap"
+msgstr "スワップ"
+
+#: src/collector.cpp:65 src/collector.cpp:73
+msgid "alive"
+msgstr "稼働中"
+
+#: src/collector.cpp:67 src/collector.cpp:75
+msgid "wait"
+msgstr "待機"
+
+#: src/collector.cpp:69 src/collector.cpp:77
+msgid "total"
+msgstr "合計"
+
+#: src/collector.cpp:71
+msgid "open"
+msgstr "オープン"
+
+#: src/collector.cpp:85
+msgid "Device I/O"
+msgstr "デバイス I/O"
+
+#: src/collector.cpp:87
+msgid "Network"
+msgstr "ネットワーク"
+
+#: src/collector.cpp:89 src/dialogs.cpp:147
+msgid "Address"
+msgstr "アドレス"
+
+#: src/collector.cpp:91
+msgid "Process CPU"
+msgstr "プロセス CPU"
+
+#: src/collector.cpp:93
+msgid "Process I/O"
+msgstr "プロセス I/O"
+
+#: src/collector.cpp:95
+msgid "CPU"
+msgstr "CPU"
+
+#: src/collector.cpp:97
+msgid "Memory"
+msgstr "メモリ"
+
+#: src/collector.cpp:99
+msgid "Threads"
+msgstr "スレッド"
+
+#: src/collector.cpp:101
+msgid "File Descriptors"
+msgstr "ファイル記述子"
+
+#: src/collector.cpp:103
+msgid "Connections"
+msgstr "接続"
+
+#: src/collector.cpp:105
+msgid "Chart"
+msgstr "グラフ"
+
+#: src/main_frame.cpp:44
+msgid "Failed to create output directory."
+msgstr "出力ディレクトリを作成できませんでした。"
+
+#: src/main_frame.cpp:63
+#, c-format
+msgid "interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to rearrange"
+msgstr "間隔 %lld ms  |  表示 %lld ms  |  ドラッグで移動、ホイールでズーム  |  ペインをドラッグして並べ替え"
+
+#: src/main_frame.cpp:75
+msgid "Open...\tCtrl+O"
+msgstr "開く…\tCtrl+O"
+
+#: src/main_frame.cpp:75
+msgid "Select a process from the list"
+msgstr "一覧からプロセスを選択"
+
+#: src/main_frame.cpp:78
+msgid "Open PID...\tCtrl+P"
+msgstr "PID を開く…\tCtrl+P"
+
+#: src/main_frame.cpp:78
+msgid "Monitor a process by PID"
+msgstr "PID でプロセスを監視"
+
+#: src/main_frame.cpp:81
+msgid "Quit\tCtrl+Q"
+msgstr "終了\tCtrl+Q"
+
+#: src/main_frame.cpp:86
+msgid "Clear History\tCtrl+L"
+msgstr "履歴を消去\tCtrl+L"
+
+#: src/main_frame.cpp:86
+msgid "Clear all chart history"
+msgstr "すべてのグラフ履歴を消去"
+
+#: src/main_frame.cpp:89
+msgid "Copy Snapshot\tCtrl+C"
+msgstr "スナップショットをコピー\tCtrl+C"
+
+#: src/main_frame.cpp:89
+msgid "Copy latest sample values"
+msgstr "最新のサンプル値をコピー"
+
+#: src/main_frame.cpp:92
+msgid "Reset Layout\tCtrl+Shift+R"
+msgstr "レイアウトをリセット\tCtrl+Shift+R"
+
+#: src/main_frame.cpp:93
+msgid "Restore balanced auto layout"
+msgstr "均等な自動レイアウトに戻す"
+
+#: src/main_frame.cpp:97
+msgid "CPU\tCtrl+Shift+C"
+msgstr "CPU\tCtrl+Shift+C"
+
+#: src/main_frame.cpp:98
+msgid "System CPU overall and per-core"
+msgstr "システム CPU の全体およびコア別"
+
+#: src/main_frame.cpp:99
+msgid "Memory\tCtrl+Shift+M"
+msgstr "メモリ\tCtrl+Shift+M"
+
+#: src/main_frame.cpp:100
+msgid "System memory and swap"
+msgstr "システムメモリとスワップ"
+
+#: src/main_frame.cpp:101
+msgid "Network\tCtrl+Shift+N"
+msgstr "ネットワーク\tCtrl+Shift+N"
+
+#: src/main_frame.cpp:102
+msgid "Network interface traffic"
+msgstr "ネットワークインターフェイスのトラフィック"
+
+#: src/main_frame.cpp:103
+msgid "Threads\tCtrl+Shift+T"
+msgstr "スレッド\tCtrl+Shift+T"
+
+#: src/main_frame.cpp:104
+msgid "Thread counts (alive / wait / total)"
+msgstr "スレッド数（稼働中 / 待機 / 合計）"
+
+#: src/main_frame.cpp:105
+msgid "File Descriptors\tCtrl+Shift+F"
+msgstr "ファイル記述子\tCtrl+Shift+F"
+
+#: src/main_frame.cpp:106
+msgid "Open file-descriptor counts"
+msgstr "開いているファイル記述子数"
+
+#: src/main_frame.cpp:107
+msgid "Connections\tCtrl+Shift+K"
+msgstr "接続\tCtrl+Shift+K"
+
+#: src/main_frame.cpp:108
+msgid "Net connections (alive / wait / total)"
+msgstr "ネットワーク接続（稼働中 / 待機 / 合計）"
+
+#: src/main_frame.cpp:110
+msgid "Add...\tCtrl+Shift+A"
+msgstr "追加…\tCtrl+Shift+A"
+
+#: src/main_frame.cpp:111
+msgid "Add a capture (device/iface/addr/name)"
+msgstr "キャプチャを追加（デバイス/インターフェイス/アドレス/名前）"
+
+#: src/main_frame.cpp:113
+msgid "Remove\tDelete"
+msgstr "削除\tDelete"
+
+#: src/main_frame.cpp:114
+msgid "Remove the focused chart capture"
+msgstr "フォーカス中のグラフキャプチャを削除"
+
+#: src/main_frame.cpp:117 src/chart_panel.cpp:153
+msgid "Legends\tCtrl+Shift+L"
+msgstr "凡例\tCtrl+Shift+L"
+
+#: src/main_frame.cpp:117
+msgid "Show chart legends"
+msgstr "グラフの凡例を表示"
+
+#: src/main_frame.cpp:118 src/chart_panel.cpp:155
+msgid "Y-Log\tCtrl+Shift+Y"
+msgstr "Y 軸対数\tCtrl+Shift+Y"
+
+#: src/main_frame.cpp:118
+msgid "Logarithmic Y axis"
+msgstr "Y 軸を対数表示"
+
+#: src/main_frame.cpp:121
+msgid "Dots\tAlt+1"
+msgstr "点\tAlt+1"
+
+#: src/main_frame.cpp:122
+msgid "Curve\tAlt+2"
+msgstr "曲線\tAlt+2"
+
+#: src/main_frame.cpp:123
+msgid "Bars (siblings)\tAlt+3"
+msgstr "棒（並列）\tAlt+3"
+
+#: src/main_frame.cpp:124
+msgid "Stacked Bars\tAlt+4"
+msgstr "積み上げ棒\tAlt+4"
+
+#: src/main_frame.cpp:125 src/chart_panel.cpp:177
+msgid "Show as"
+msgstr "表示形式"
+
+#: src/main_frame.cpp:128
+msgid "Segment\tAlt+Shift+1"
+msgstr "線分\tAlt+Shift+1"
+
+#: src/main_frame.cpp:129
+msgid "Quadratic\tAlt+Shift+2"
+msgstr "二次曲線\tAlt+Shift+2"
+
+#: src/main_frame.cpp:130
+msgid "Bicubic\tAlt+Shift+3"
+msgstr "双三次曲線\tAlt+Shift+3"
+
+#: src/main_frame.cpp:131 src/chart_panel.cpp:194
+msgid "Display Curve"
+msgstr "曲線表示"
+
+#: src/main_frame.cpp:135
+msgid "1 second\tCtrl+1"
+msgstr "1 秒\tCtrl+1"
+
+#: src/main_frame.cpp:136
+msgid "2 seconds\tCtrl+2"
+msgstr "2 秒\tCtrl+2"
+
+#: src/main_frame.cpp:137
+msgid "5 seconds\tCtrl+5"
+msgstr "5 秒\tCtrl+5"
+
+#: src/main_frame.cpp:138
+msgid "Refresh Interval"
+msgstr "更新間隔"
+
+#: src/main_frame.cpp:141 src/chart_panel.cpp:216
+msgid "Reset Live View\tHome"
+msgstr "ライブ表示をリセット\tHome"
+
+#: src/main_frame.cpp:141
+msgid "Follow the live edge again"
+msgstr "再び最新位置を追従"
+
+#: src/main_frame.cpp:145
+msgid "About pidload\tF1"
+msgstr "pidload について\tF1"
+
+#: src/main_frame.cpp:149
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#: src/main_frame.cpp:150
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#: src/main_frame.cpp:151
+msgid "&View"
+msgstr "表示(&V)"
+
+#: src/main_frame.cpp:152
+msgid "&Help"
+msgstr "ヘルプ(&H)"
+
+#: src/main_frame.cpp:266
+msgid "No charts — use View → Add… or enable CPU/Memory/Network/…"
+msgstr "グラフがありません — 表示 → 追加…を使うか、CPU/メモリ/ネットワーク/…を有効にしてください"
+
+#: src/main_frame.cpp:290
+#, c-format
+msgid "view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom"
+msgstr "表示 %lld–%lld ms (%s)  |  ドラッグで移動、ホイールでズーム"
+
+#: src/main_frame.cpp:293
+msgid "live"
+msgstr "ライブ"
+
+#: src/main_frame.cpp:293
+msgid "paused"
+msgstr "一時停止"
+
+#: src/main_frame.cpp:423
+#, c-format
+msgid "interval %lld ms"
+msgstr "間隔 %lld ms"
+
+#: src/main_frame.cpp:513
+msgid "Snapshot copied to clipboard"
+msgstr "スナップショットをクリップボードにコピーしました"
+
+#: src/main_frame.cpp:591
+msgid "Click a chart first, then Remove."
+msgstr "先にグラフをクリックしてから「削除」を選択してください。"
+
+#: src/main_frame.cpp:677
+msgid "Process and traffic monitor with dockable charts."
+msgstr "ドッキング可能なグラフを備えたプロセスおよびトラフィックモニター。"
+
+#: src/chart_panel.cpp:159
+msgid "Dots"
+msgstr "点"
+
+#: src/chart_panel.cpp:160
+msgid "Curve"
+msgstr "曲線"
+
+#: src/chart_panel.cpp:161
+msgid "Bars (siblings)"
+msgstr "棒（並列）"
+
+#: src/chart_panel.cpp:162
+msgid "Stacked Bars"
+msgstr "積み上げ棒"
+
+#: src/chart_panel.cpp:180
+msgid "Segment"
+msgstr "線分"
+
+#: src/chart_panel.cpp:181
+msgid "Quadratic"
+msgstr "二次曲線"
+
+#: src/chart_panel.cpp:182
+msgid "Bicubic"
+msgstr "双三次曲線"
+
+#: src/chart_panel.cpp:198
+msgid "Raw size"
+msgstr "生サイズ"
+
+#: src/chart_panel.cpp:199
+msgid "Payload size"
+msgstr "ペイロードサイズ"
+
+#: src/chart_panel.cpp:200
+msgid "Num of packets"
+msgstr "パケット数"
+
+#: src/chart_panel.cpp:212
+msgid "Display Unit"
+msgstr "表示単位"
+
+#: src/chart_panel.cpp:217
+msgid "Remove Chart\tDelete"
+msgstr "グラフを削除\tDelete"
+
+#: src/chart_panel.cpp:753 src/chart_panel.cpp:889
+msgid "waiting for samples…"
+msgstr "サンプルを待機中…"
+
+#: src/chart_panel.cpp:857
+msgid "Processes"
+msgstr "プロセス"
+
+#: src/dialogs.cpp:74
+msgid "Open Process"
+msgstr "プロセスを開く"
+
+#: src/dialogs.cpp:78
+msgid "PID"
+msgstr "PID"
+
+#: src/dialogs.cpp:79
+msgid "UID"
+msgstr "UID"
+
+#: src/dialogs.cpp:80
+msgid "Command"
+msgstr "コマンド"
+
+#: src/dialogs.cpp:93
+msgid "Select a process to monitor:"
+msgstr "監視するプロセスを選択:"
+
+#: src/dialogs.cpp:130
+msgid "Enter process ID:"
+msgstr "プロセス ID を入力:"
+
+#: src/dialogs.cpp:130
+msgid "Open PID"
+msgstr "PID を開く"
+
+#: src/dialogs.cpp:136
+msgid "Invalid PID."
+msgstr "PID が無効です。"
+
+#: src/dialogs.cpp:143
+msgid "Add Capture"
+msgstr "キャプチャを追加"
+
+#: src/dialogs.cpp:145
+msgid "Device"
+msgstr "デバイス"
+
+#: src/dialogs.cpp:146
+msgid "Interface"
+msgstr "インターフェイス"
+
+#: src/dialogs.cpp:148
+msgid "Process NAME"
+msgstr "プロセス名"
+
+#: src/dialogs.cpp:152
+msgid "NAME: pid, exe, path, window title, or glob (* ?)"
+msgstr "名前: PID、実行ファイル、パス、ウィンドウタイトル、または glob (* ?)"
+
+#: src/dialogs.cpp:156
+msgid "Type:"
+msgstr "種類:"
+
+#: src/dialogs.cpp:158
+msgid "Value:"
+msgstr "値:"

@@ -1,0 +1,614 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pidload 0.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-16 00:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/options.cpp:23
+msgid ""
+"Usage: pidload [OPTION]... [NAME]...\n"
+"Monitor process load and selected device/network traffic in a wxWidgets window.\n"
+msgstr ""
+"用法：pidload [选项]... [名称]...\n"
+"在 wxWidgets 窗口中监视进程负载和所选设备/网络流量。\n"
+
+#: src/options.cpp:27
+msgid ""
+"Each NAME matches processes, tried as:\n"
+"  pid, executable name, executable path, window title,\n"
+"  executable glob name, executable glob path, window glob title.\n"
+"Glob characters: * ?   Example: pidload editor   pidload '*term*'\n"
+msgstr ""
+"每个“名称”按以下顺序匹配进程：\n"
+"  PID、可执行文件名、可执行文件路径、窗口标题，\n"
+"  可执行文件名/路径/窗口标题的 glob 模式。\n"
+"glob 字符：* ?   示例：pidload editor   pidload '*term*'\n"
+
+#: src/options.cpp:34
+msgid "block device I/O to monitor (repeatable)\n"
+msgstr "要监视的块设备 I/O（可重复指定）\n"
+
+#: src/options.cpp:36
+msgid "netdev to monitor, or \"all\" (repeatable)\n"
+msgstr "要监视的网络设备，或“all”（可重复指定）\n"
+
+#: src/options.cpp:38
+msgid "IPv4/IPv6 address traffic to monitor (repeatable)\n"
+msgstr "要监视的 IPv4/IPv6 地址流量（可重复指定）\n"
+
+#: src/options.cpp:40
+msgid "chart system CPU (overall and each core)\n"
+msgstr "绘制系统 CPU 图表（总体及各核心）\n"
+
+#: src/options.cpp:42
+msgid "chart system memory and swap\n"
+msgstr "绘制系统内存和交换空间图表\n"
+
+#: src/options.cpp:44
+msgid "chart thread counts (alive / wait / total opened)\n"
+msgstr "绘制线程数图表（活动/等待/累计打开）\n"
+
+#: src/options.cpp:46
+msgid "chart open file-descriptor counts\n"
+msgstr "绘制打开的文件描述符数量图表\n"
+
+#: src/options.cpp:48
+msgid "chart net connections (alive / wait / total)\n"
+msgstr "绘制网络连接图表（活动/等待/总计）\n"
+
+#: src/options.cpp:50
+msgid "sample interval (default: 2s)\n"
+msgstr "采样间隔（默认：2s）\n"
+
+#: src/options.cpp:52
+msgid "default visible window; session history stays in memory (default: 3min)\n"
+msgstr "默认可见时间范围；会话历史保留在内存中（默认：3min）\n"
+
+#: src/options.cpp:54
+msgid "directory prefix for interval logs (name.pid.log)\n"
+msgstr "间隔日志的目录前缀（name.pid.log）\n"
+
+#: src/options.cpp:56
+msgid "repeat for more verbose logging\n"
+msgstr "重复指定可输出更详细的日志\n"
+
+#: src/options.cpp:58
+msgid "show fewer logging messages\n"
+msgstr "减少显示日志消息\n"
+
+#: src/options.cpp:60
+msgid "display this help and exit\n"
+msgstr "显示此帮助并退出\n"
+
+#: src/options.cpp:62
+msgid "output version information and exit\n"
+msgstr "输出版本信息并退出\n"
+
+#: src/options.cpp:64
+msgid "Duration units: ms, s/sec (default), m/min, h. Examples: .5s, 5min.\n"
+msgstr "时长单位：ms、s/sec（默认）、m/min、h。示例：.5s、5min。\n"
+
+#: src/options.cpp:66
+#, c-format
+msgid "Report bugs to: <%s>\n"
+msgstr "错误报告至：<%s>\n"
+
+#: src/options.cpp:137
+#, c-format
+msgid "pidload: invalid interval: %s\n"
+msgstr "pidload：间隔无效：%s\n"
+
+#: src/options.cpp:146
+#, c-format
+msgid "pidload: invalid window: %s\n"
+msgstr "pidload：时间范围无效：%s\n"
+
+#: src/options.cpp:166
+#, c-format
+msgid "Copyright (C) %d %s\n"
+msgstr "版权所有 (C) %d %s\n"
+
+#: src/options.cpp:167
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "许可证 AGPL-3.0 或更高版本：<https://www.gnu.org/licenses/agpl-3.0.html>\n"
+
+#: src/options.cpp:169
+msgid "This is free software: you are free to change and redistribute it.\n"
+msgstr "这是自由软件：您可以自由修改和再发布。\n"
+
+#: src/options.cpp:171
+msgid "This project opposes AI exploitation and AI hegemony.\n"
+msgstr "本项目反对 AI 剥削和 AI 霸权。\n"
+
+#: src/options.cpp:172
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "本项目拒绝不加思考的 MIT 式许可和政治上幼稚的 BSD 式许可。\n"
+
+#: src/options.cpp:175
+msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr "在法律允许的范围内，不提供任何担保。\n"
+
+#: src/options.cpp:203
+#, c-format
+msgid "pidload: window must be >= interval\n"
+msgstr "pidload：时间范围必须 >= 间隔\n"
+
+#: src/options.cpp:211
+#, c-format
+msgid "pidload: nothing to monitor; give NAME(s) and/or -d/-i/-a/-c/-m/-T/-F/-C\n"
+msgstr "pidload：没有监视对象；请指定一个或多个名称和/或 -d/-i/-a/-c/-m/-T/-F/-C\n"
+
+#: src/collector.cpp:35 src/collector.cpp:51
+msgid "read"
+msgstr "读取"
+
+#: src/collector.cpp:37 src/collector.cpp:53
+msgid "write"
+msgstr "写入"
+
+#: src/collector.cpp:39 src/collector.cpp:45
+msgid "in"
+msgstr "入站"
+
+#: src/collector.cpp:41 src/collector.cpp:47
+msgid "out"
+msgstr "出站"
+
+#: src/collector.cpp:43
+msgid "drop"
+msgstr "丢弃"
+
+#: src/collector.cpp:49
+msgid "cpu"
+msgstr "CPU"
+
+#: src/collector.cpp:55
+msgid "overall"
+msgstr "总体"
+
+#: src/collector.cpp:57
+msgid "core"
+msgstr "核心"
+
+#: src/collector.cpp:59
+msgid "used"
+msgstr "已用"
+
+#: src/collector.cpp:61
+msgid "avail"
+msgstr "可用"
+
+#: src/collector.cpp:63
+msgid "swap"
+msgstr "交换"
+
+#: src/collector.cpp:65 src/collector.cpp:73
+msgid "alive"
+msgstr "活动"
+
+#: src/collector.cpp:67 src/collector.cpp:75
+msgid "wait"
+msgstr "等待"
+
+#: src/collector.cpp:69 src/collector.cpp:77
+msgid "total"
+msgstr "总计"
+
+#: src/collector.cpp:71
+msgid "open"
+msgstr "打开"
+
+#: src/collector.cpp:85
+msgid "Device I/O"
+msgstr "设备 I/O"
+
+#: src/collector.cpp:87
+msgid "Network"
+msgstr "网络"
+
+#: src/collector.cpp:89 src/dialogs.cpp:147
+msgid "Address"
+msgstr "地址"
+
+#: src/collector.cpp:91
+msgid "Process CPU"
+msgstr "进程 CPU"
+
+#: src/collector.cpp:93
+msgid "Process I/O"
+msgstr "进程 I/O"
+
+#: src/collector.cpp:95
+msgid "CPU"
+msgstr "CPU"
+
+#: src/collector.cpp:97
+msgid "Memory"
+msgstr "内存"
+
+#: src/collector.cpp:99
+msgid "Threads"
+msgstr "线程"
+
+#: src/collector.cpp:101
+msgid "File Descriptors"
+msgstr "文件描述符"
+
+#: src/collector.cpp:103
+msgid "Connections"
+msgstr "连接"
+
+#: src/collector.cpp:105
+msgid "Chart"
+msgstr "图表"
+
+#: src/main_frame.cpp:44
+msgid "Failed to create output directory."
+msgstr "无法创建输出目录。"
+
+#: src/main_frame.cpp:63
+#, c-format
+msgid "interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to rearrange"
+msgstr "间隔 %lld ms  |  视图 %lld ms  |  拖动平移，滚轮缩放  |  拖动窗格重新排列"
+
+#: src/main_frame.cpp:75
+msgid "Open...\tCtrl+O"
+msgstr "打开…\tCtrl+O"
+
+#: src/main_frame.cpp:75
+msgid "Select a process from the list"
+msgstr "从列表中选择进程"
+
+#: src/main_frame.cpp:78
+msgid "Open PID...\tCtrl+P"
+msgstr "打开 PID…\tCtrl+P"
+
+#: src/main_frame.cpp:78
+msgid "Monitor a process by PID"
+msgstr "按 PID 监视进程"
+
+#: src/main_frame.cpp:81
+msgid "Quit\tCtrl+Q"
+msgstr "退出\tCtrl+Q"
+
+#: src/main_frame.cpp:86
+msgid "Clear History\tCtrl+L"
+msgstr "清除历史\tCtrl+L"
+
+#: src/main_frame.cpp:86
+msgid "Clear all chart history"
+msgstr "清除所有图表历史"
+
+#: src/main_frame.cpp:89
+msgid "Copy Snapshot\tCtrl+C"
+msgstr "复制快照\tCtrl+C"
+
+#: src/main_frame.cpp:89
+msgid "Copy latest sample values"
+msgstr "复制最新采样值"
+
+#: src/main_frame.cpp:92
+msgid "Reset Layout\tCtrl+Shift+R"
+msgstr "重置布局\tCtrl+Shift+R"
+
+#: src/main_frame.cpp:93
+msgid "Restore balanced auto layout"
+msgstr "恢复均衡的自动布局"
+
+#: src/main_frame.cpp:97
+msgid "CPU\tCtrl+Shift+C"
+msgstr "CPU\tCtrl+Shift+C"
+
+#: src/main_frame.cpp:98
+msgid "System CPU overall and per-core"
+msgstr "系统 CPU 总体及各核心"
+
+#: src/main_frame.cpp:99
+msgid "Memory\tCtrl+Shift+M"
+msgstr "内存\tCtrl+Shift+M"
+
+#: src/main_frame.cpp:100
+msgid "System memory and swap"
+msgstr "系统内存和交换空间"
+
+#: src/main_frame.cpp:101
+msgid "Network\tCtrl+Shift+N"
+msgstr "网络\tCtrl+Shift+N"
+
+#: src/main_frame.cpp:102
+msgid "Network interface traffic"
+msgstr "网络接口流量"
+
+#: src/main_frame.cpp:103
+msgid "Threads\tCtrl+Shift+T"
+msgstr "线程\tCtrl+Shift+T"
+
+#: src/main_frame.cpp:104
+msgid "Thread counts (alive / wait / total)"
+msgstr "线程数（活动/等待/总计）"
+
+#: src/main_frame.cpp:105
+msgid "File Descriptors\tCtrl+Shift+F"
+msgstr "文件描述符\tCtrl+Shift+F"
+
+#: src/main_frame.cpp:106
+msgid "Open file-descriptor counts"
+msgstr "打开的文件描述符数量"
+
+#: src/main_frame.cpp:107
+msgid "Connections\tCtrl+Shift+K"
+msgstr "连接\tCtrl+Shift+K"
+
+#: src/main_frame.cpp:108
+msgid "Net connections (alive / wait / total)"
+msgstr "网络连接（活动/等待/总计）"
+
+#: src/main_frame.cpp:110
+msgid "Add...\tCtrl+Shift+A"
+msgstr "添加…\tCtrl+Shift+A"
+
+#: src/main_frame.cpp:111
+msgid "Add a capture (device/iface/addr/name)"
+msgstr "添加捕获项（设备/接口/地址/名称）"
+
+#: src/main_frame.cpp:113
+msgid "Remove\tDelete"
+msgstr "移除\tDelete"
+
+#: src/main_frame.cpp:114
+msgid "Remove the focused chart capture"
+msgstr "移除当前图表的捕获项"
+
+#: src/main_frame.cpp:117 src/chart_panel.cpp:153
+msgid "Legends\tCtrl+Shift+L"
+msgstr "图例\tCtrl+Shift+L"
+
+#: src/main_frame.cpp:117
+msgid "Show chart legends"
+msgstr "显示图表图例"
+
+#: src/main_frame.cpp:118 src/chart_panel.cpp:155
+msgid "Y-Log\tCtrl+Shift+Y"
+msgstr "Y 轴对数\tCtrl+Shift+Y"
+
+#: src/main_frame.cpp:118
+msgid "Logarithmic Y axis"
+msgstr "对数 Y 轴"
+
+#: src/main_frame.cpp:121
+msgid "Dots\tAlt+1"
+msgstr "点\tAlt+1"
+
+#: src/main_frame.cpp:122
+msgid "Curve\tAlt+2"
+msgstr "曲线\tAlt+2"
+
+#: src/main_frame.cpp:123
+msgid "Bars (siblings)\tAlt+3"
+msgstr "柱形（并列）\tAlt+3"
+
+#: src/main_frame.cpp:124
+msgid "Stacked Bars\tAlt+4"
+msgstr "堆叠柱形\tAlt+4"
+
+#: src/main_frame.cpp:125 src/chart_panel.cpp:177
+msgid "Show as"
+msgstr "显示为"
+
+#: src/main_frame.cpp:128
+msgid "Segment\tAlt+Shift+1"
+msgstr "线段\tAlt+Shift+1"
+
+#: src/main_frame.cpp:129
+msgid "Quadratic\tAlt+Shift+2"
+msgstr "二次曲线\tAlt+Shift+2"
+
+#: src/main_frame.cpp:130
+msgid "Bicubic\tAlt+Shift+3"
+msgstr "双三次曲线\tAlt+Shift+3"
+
+#: src/main_frame.cpp:131 src/chart_panel.cpp:194
+msgid "Display Curve"
+msgstr "曲线显示"
+
+#: src/main_frame.cpp:135
+msgid "1 second\tCtrl+1"
+msgstr "1 秒\tCtrl+1"
+
+#: src/main_frame.cpp:136
+msgid "2 seconds\tCtrl+2"
+msgstr "2 秒\tCtrl+2"
+
+#: src/main_frame.cpp:137
+msgid "5 seconds\tCtrl+5"
+msgstr "5 秒\tCtrl+5"
+
+#: src/main_frame.cpp:138
+msgid "Refresh Interval"
+msgstr "刷新间隔"
+
+#: src/main_frame.cpp:141 src/chart_panel.cpp:216
+msgid "Reset Live View\tHome"
+msgstr "重置实时视图\tHome"
+
+#: src/main_frame.cpp:141
+msgid "Follow the live edge again"
+msgstr "重新跟随实时边缘"
+
+#: src/main_frame.cpp:145
+msgid "About pidload\tF1"
+msgstr "关于 pidload\tF1"
+
+#: src/main_frame.cpp:149
+msgid "&File"
+msgstr "文件(&F)"
+
+#: src/main_frame.cpp:150
+msgid "&Edit"
+msgstr "编辑(&E)"
+
+#: src/main_frame.cpp:151
+msgid "&View"
+msgstr "视图(&V)"
+
+#: src/main_frame.cpp:152
+msgid "&Help"
+msgstr "帮助(&H)"
+
+#: src/main_frame.cpp:266
+msgid "No charts — use View → Add… or enable CPU/Memory/Network/…"
+msgstr "无图表 — 使用“视图 → 添加…”或启用 CPU/内存/网络/…"
+
+#: src/main_frame.cpp:290
+#, c-format
+msgid "view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom"
+msgstr "视图 %lld–%lld ms（%s）  |  拖动平移，滚轮缩放"
+
+#: src/main_frame.cpp:293
+msgid "live"
+msgstr "实时"
+
+#: src/main_frame.cpp:293
+msgid "paused"
+msgstr "已暂停"
+
+#: src/main_frame.cpp:423
+#, c-format
+msgid "interval %lld ms"
+msgstr "间隔 %lld ms"
+
+#: src/main_frame.cpp:513
+msgid "Snapshot copied to clipboard"
+msgstr "快照已复制到剪贴板"
+
+#: src/main_frame.cpp:591
+msgid "Click a chart first, then Remove."
+msgstr "请先点击图表，然后选择“移除”。"
+
+#: src/main_frame.cpp:677
+msgid "Process and traffic monitor with dockable charts."
+msgstr "带可停靠图表的进程和流量监视器。"
+
+#: src/chart_panel.cpp:159
+msgid "Dots"
+msgstr "点"
+
+#: src/chart_panel.cpp:160
+msgid "Curve"
+msgstr "曲线"
+
+#: src/chart_panel.cpp:161
+msgid "Bars (siblings)"
+msgstr "柱形（并列）"
+
+#: src/chart_panel.cpp:162
+msgid "Stacked Bars"
+msgstr "堆叠柱形"
+
+#: src/chart_panel.cpp:180
+msgid "Segment"
+msgstr "线段"
+
+#: src/chart_panel.cpp:181
+msgid "Quadratic"
+msgstr "二次曲线"
+
+#: src/chart_panel.cpp:182
+msgid "Bicubic"
+msgstr "双三次曲线"
+
+#: src/chart_panel.cpp:198
+msgid "Raw size"
+msgstr "原始大小"
+
+#: src/chart_panel.cpp:199
+msgid "Payload size"
+msgstr "载荷大小"
+
+#: src/chart_panel.cpp:200
+msgid "Num of packets"
+msgstr "数据包数"
+
+#: src/chart_panel.cpp:212
+msgid "Display Unit"
+msgstr "显示单位"
+
+#: src/chart_panel.cpp:217
+msgid "Remove Chart\tDelete"
+msgstr "移除图表\tDelete"
+
+#: src/chart_panel.cpp:753 src/chart_panel.cpp:889
+msgid "waiting for samples…"
+msgstr "正在等待采样…"
+
+#: src/chart_panel.cpp:857
+msgid "Processes"
+msgstr "进程"
+
+#: src/dialogs.cpp:74
+msgid "Open Process"
+msgstr "打开进程"
+
+#: src/dialogs.cpp:78
+msgid "PID"
+msgstr "PID"
+
+#: src/dialogs.cpp:79
+msgid "UID"
+msgstr "UID"
+
+#: src/dialogs.cpp:80
+msgid "Command"
+msgstr "命令"
+
+#: src/dialogs.cpp:93
+msgid "Select a process to monitor:"
+msgstr "选择要监视的进程："
+
+#: src/dialogs.cpp:130
+msgid "Enter process ID:"
+msgstr "输入进程 ID："
+
+#: src/dialogs.cpp:130
+msgid "Open PID"
+msgstr "打开 PID"
+
+#: src/dialogs.cpp:136
+msgid "Invalid PID."
+msgstr "PID 无效。"
+
+#: src/dialogs.cpp:143
+msgid "Add Capture"
+msgstr "添加捕获项"
+
+#: src/dialogs.cpp:145
+msgid "Device"
+msgstr "设备"
+
+#: src/dialogs.cpp:146
+msgid "Interface"
+msgstr "接口"
+
+#: src/dialogs.cpp:148
+msgid "Process NAME"
+msgstr "进程名称"
+
+#: src/dialogs.cpp:152
+msgid "NAME: pid, exe, path, window title, or glob (* ?)"
+msgstr "名称：PID、可执行文件、路径、窗口标题或 glob 模式（* ?）"
+
+#: src/dialogs.cpp:156
+msgid "Type:"
+msgstr "类型："
+
+#: src/dialogs.cpp:158
+msgid "Value:"
+msgstr "值："

@@ -5,6 +5,7 @@
  */
 
 #include "chart_panel.hpp"
+#include "wx_tr.hpp"
 
 #include <wx/dcbuffer.h>
 #include <wx/menu.h>
@@ -149,16 +150,16 @@ int64_t ChartPanel::time_at_x(int x) const {
 
 void ChartPanel::OnRightDown(wxMouseEvent &event) {
     wxMenu menu;
-    menu.AppendCheckItem(ID_CtxLegends, "Legends\tCtrl+Shift+L");
+    menu.AppendCheckItem(ID_CtxLegends, tr("Legends\tCtrl+Shift+L"));
     menu.Check(ID_CtxLegends, show_legends_);
-    menu.AppendCheckItem(ID_CtxYLog, "Y-Log\tCtrl+Shift+Y");
+    menu.AppendCheckItem(ID_CtxYLog, tr("Y-Log\tCtrl+Shift+Y"));
     menu.Check(ID_CtxYLog, y_log_);
     menu.AppendSeparator();
     auto *show = new wxMenu;
-    show->AppendRadioItem(ID_CtxDots, "Dots");
-    show->AppendRadioItem(ID_CtxCurve, "Curve");
-    show->AppendRadioItem(ID_CtxBars, "Bars (siblings)");
-    show->AppendRadioItem(ID_CtxStacked, "Stacked Bars");
+    show->AppendRadioItem(ID_CtxDots, tr("Dots"));
+    show->AppendRadioItem(ID_CtxCurve, tr("Curve"));
+    show->AppendRadioItem(ID_CtxBars, tr("Bars (siblings)"));
+    show->AppendRadioItem(ID_CtxStacked, tr("Stacked Bars"));
     switch (show_as_) {
     case ChartShowAs::Dots:
         show->Check(ID_CtxDots, true);
@@ -173,12 +174,12 @@ void ChartPanel::OnRightDown(wxMouseEvent &event) {
         show->Check(ID_CtxStacked, true);
         break;
     }
-    menu.AppendSubMenu(show, "Show as");
+    menu.AppendSubMenu(show, tr("Show as"));
 
     auto *curve = new wxMenu;
-    curve->AppendRadioItem(ID_CtxCurveSeg, "Segment");
-    curve->AppendRadioItem(ID_CtxCurveQuad, "Quadratic");
-    curve->AppendRadioItem(ID_CtxCurveCubic, "Bicubic");
+    curve->AppendRadioItem(ID_CtxCurveSeg, tr("Segment"));
+    curve->AppendRadioItem(ID_CtxCurveQuad, tr("Quadratic"));
+    curve->AppendRadioItem(ID_CtxCurveCubic, tr("Bicubic"));
     switch (curve_style_) {
     case CurveStyle::Segment:
         curve->Check(ID_CtxCurveSeg, true);
@@ -190,13 +191,13 @@ void ChartPanel::OnRightDown(wxMouseEvent &event) {
         curve->Check(ID_CtxCurveCubic, true);
         break;
     }
-    menu.AppendSubMenu(curve, "Display Curve");
+    menu.AppendSubMenu(curve, tr("Display Curve"));
 
     if (is_net_chart()) {
         auto *unit = new wxMenu;
-        unit->AppendRadioItem(ID_CtxUnitRaw, "Raw size");
-        unit->AppendRadioItem(ID_CtxUnitPayload, "Payload size");
-        unit->AppendRadioItem(ID_CtxUnitPackets, "Num of packets");
+        unit->AppendRadioItem(ID_CtxUnitRaw, tr("Raw size"));
+        unit->AppendRadioItem(ID_CtxUnitPayload, tr("Payload size"));
+        unit->AppendRadioItem(ID_CtxUnitPackets, tr("Num of packets"));
         switch (net_unit_) {
         case NetDisplayUnit::RawSize:
             unit->Check(ID_CtxUnitRaw, true);
@@ -208,12 +209,12 @@ void ChartPanel::OnRightDown(wxMouseEvent &event) {
             unit->Check(ID_CtxUnitPackets, true);
             break;
         }
-        menu.AppendSubMenu(unit, "Display Unit");
+        menu.AppendSubMenu(unit, tr("Display Unit"));
     }
 
     menu.AppendSeparator();
-    menu.Append(ID_CtxResetView, "Reset Live View\tHome");
-    menu.Append(ID_CtxRemove, "Remove Chart\tDelete");
+    menu.Append(ID_CtxResetView, tr("Reset Live View\tHome"));
+    menu.Append(ID_CtxRemove, tr("Remove Chart\tDelete"));
     PopupMenu(&menu, event.GetPosition());
 }
 
@@ -749,7 +750,7 @@ void ChartPanel::OnPaint(wxPaintEvent &) {
         if (!any) {
             dc.SetTextForeground(wxColour(140, 146, 156));
             dc.SetFont(wxFontInfo(9).Family(wxFONTFAMILY_SWISS).Italic());
-            wxString msg = "waiting for samples…";
+            wxString msg = tr("waiting for samples…");
             wxSize mts = dc.GetTextExtent(msg);
             dc.DrawText(msg, plot.x + (plot.width - mts.x) / 2, plot.y + (plot.height - mts.y) / 2);
         }
@@ -853,7 +854,7 @@ void ChartPanel::OnPaint(wxPaintEvent &) {
 
         dc.SetTextForeground(WithAlpha(wxColour(90, 96, 110), legend_alpha_));
         dc.SetFont(wxFontInfo(7).Family(wxFONTFAMILY_SWISS).Bold());
-        dc.DrawText("Processes", box_x + box_pad, box_y + 2);
+        dc.DrawText(tr("Processes"), box_x + box_pad, box_y + 2);
         dc.SetFont(wxFontInfo(8).Family(wxFONTFAMILY_SWISS));
 
         int ly = box_y + box_pad + 12;
@@ -885,7 +886,7 @@ void ChartPanel::OnPaint(wxPaintEvent &) {
     if (!any) {
         dc.SetTextForeground(wxColour(140, 146, 156));
         dc.SetFont(wxFontInfo(9).Family(wxFONTFAMILY_SWISS).Italic());
-        wxString msg = "waiting for samples…";
+        wxString msg = tr("waiting for samples…");
         wxSize mts = dc.GetTextExtent(msg);
         dc.DrawText(msg, plot.x + (plot.width - mts.x) / 2, plot.y + (plot.height - mts.y) / 2);
     }

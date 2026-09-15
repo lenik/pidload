@@ -1,0 +1,156 @@
+= pidload(1)
+Lenik <pidload@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: 用户命令
+:mansource: pidload
+:man-linkstyle: blue R <>
+:nofooter:
+
+== 名称
+
+pidload - 监视进程负载与设备/网络流量
+
+== 概述
+
+*pidload* [_OPTION_]... [_NAME_]...
+
+== 描述
+
+*pidload* opens a wxWidgets window that charts process CPU/I/O and selected
+块设备和网络流量。
+每个*--间隔*采样一次； *--window* 设置默认可见
+跨度。会话历史记录保存在内存中 - 拖动进行平移并使用鼠标滚轮
+缩放（所有图表共享同一时间视图）。至少一张图表显示
+X 轴上的经过时间标签。
+
+*视图 → 显示曲线* 选择分段、二次或双三次插值。
+在网络图表上，上下文菜单 *显示单位* 在原始尺寸、
+有效负载大小（线路字节减去以太网标头估计值）和数据包计数。
+
+每个 _NAME_ 选择进程。尝试匹配为：pid、可执行文件名称、
+可执行文件路径、窗口标题，然后加上全局字符 (*`*`*, *`?`*)
+可执行文件名称、路径和窗口标题。
+普通名称也与包含整个单词的窗口标题匹配
+（不区分大小写），因此 `editor` 可以匹配 `/bin/editor` 和一个标题为
+“一些编辑”。
+
+多个匹配的流程使用不同的线条样式（实线、虚线、点线……；
+10 种样式，然后重复使用）。流程图显示单独的流程图例
+切换每个进程。
+
+当设置*--output*时，每个监控实体都记录在该目录下
+（每个间隔一行）。进程日志名为 _NAME_._PID_`.log`。
+
+=== 记录字段
+
+*netdev* (_IFACE_`.log`)::
+`;入站出站下降`
+
+*block device* (_DEV_`.log`)::
+`;读写（字节；来自“/proc/diskstats”的扇区 × 512）
+
+*address* (_ADDR_`.log`)::
+`;入站出站`
+
+*process* (_NAME_._PID_`.log`)::
+`; cpu_pct 读写`
+
+*cpu* (`cpu.log`)::
+`;总体核心0 ...`
+
+*memory* (`memory.log`)::
+`;使用的_kb 可用_kb 交换_使用_kb`
+
+*threads* (_NAME_._PID_`.threads.log` or `threads.log`)::
+`;活着等待total_opened`
+
+*fds* (_NAME_._PID_`.fds.log`)::
+`; open_fds`
+
+*connections* (_NAME_._PID_`.conn.log` or `connections.log`)::
+`;活着等待总计`
+
+== 选项
+
+*-d, --dev* _DEVICE_::
+监视块设备 I/O。可重复。
+
+*-i, --iface* _NETDEV_::
+监视网络接口或“全部”。可重复。
+
+*-a, --addr* _NETADDR_::
+监控 IPv4/IPv6 地址的流量。可重复。
+
+*-c, --cpu*::
+图表系统CPU（整体和每个核心）。
+
+*-m, --memory*::
+图表系统内存和交换。
+
+*-T, --threads*::
+图表线程计数：当前活动、等待（非运行）和总唯一线程数
+  会话期间打开的线程。如果没有_NAME_，则绘制系统范围内的总计图表。
+
+*-F, --numfd*::
+图表显示匹配进程的打开文件描述符计数。
+
+*-C, --connections*::
+图表 TCP/UDP 连接计数：活动（已建立/存在）、等待（FIN/
+  TIME_WAIT / …），以及看到的唯一套接字总数。没有_NAME_，图表
+  系统范围的“/proc/net”套接字。
+
+*-t, --interval* _D_::
+采样周期（默认值：“2s”）。单位：“ms”、“s”/“sec”（默认）、“m”/“min”、“h”。
+
+*-w, --window* _D_::
+默认可见时间跨度（默认：`3min`）。必须≥间隔。
+  完整的会话历史记录保留在内存中；拖动平移并使用鼠标
+  滚轮进行缩放（在所有图表中共享）。
+
+*-o, --output* _PATH_::
+间隔日志的目录（如果需要则创建）。
+
+*-v, --verbose*::
+增加日志记录的详细程度。
+
+*-q, --quiet*::
+减少日志记录的冗长性。
+
+*-h, --help*::
+打印使用摘要并成功退出。
+
+*--version*::
+打印版本和许可证信息并成功退出。
+
+== 示例
+
+....
+pidload editor
+pidload -c -m -o /tmp/pl -t 1s '*term*' firefox
+pidload -d nvme0n1 -i lo 1234
+....
+
+== 退出状态
+
+*0*::
+成功（包括 *--help* / *--version*）。
+
+*1*::
+选项无效或启动失败。
+
+== 作者
+
+由 {project-author} <{project-email}> 撰写。
+
+== 版权
+
+版权所有 (C) {project-year}。
+许可证 AGPL-3.0 或更高版本。
+这是免费软件：您可以根据以下规定自由更改和重新分发它
+GNU Affero 通用公共许可证的条款。
+在法律允许的范围内，不提供任何保证。
+请参阅源代码分发中的 LICENSE 文件以获取完整的许可证文本，
+包括补充条款，说明该项目反对人工智能开发，以及
+人工智能霸权，拒绝盲目的麻省理工式许可和政治上的幼稚
+BSD 风格的许可。

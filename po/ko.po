@@ -1,0 +1,614 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pidload 0.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-16 00:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/options.cpp:23
+msgid ""
+"Usage: pidload [OPTION]... [NAME]...\n"
+"Monitor process load and selected device/network traffic in a wxWidgets window.\n"
+msgstr ""
+"사용법: pidload [옵션]... [이름]...\n"
+"wxWidgets 창에서 프로세스 부하와 선택한 장치/네트워크 트래픽을 모니터링합니다.\n"
+
+#: src/options.cpp:27
+msgid ""
+"Each NAME matches processes, tried as:\n"
+"  pid, executable name, executable path, window title,\n"
+"  executable glob name, executable glob path, window glob title.\n"
+"Glob characters: * ?   Example: pidload editor   pidload '*term*'\n"
+msgstr ""
+"각 이름은 다음 순서로 프로세스와 대조됩니다:\n"
+"  PID, 실행 파일 이름, 실행 파일 경로, 창 제목,\n"
+"  실행 파일 이름/경로/창 제목의 glob 패턴.\n"
+"glob 문자: * ?   예: pidload editor   pidload '*term*'\n"
+
+#: src/options.cpp:34
+msgid "block device I/O to monitor (repeatable)\n"
+msgstr "모니터링할 블록 장치 I/O(반복 가능)\n"
+
+#: src/options.cpp:36
+msgid "netdev to monitor, or \"all\" (repeatable)\n"
+msgstr "모니터링할 네트워크 장치 또는 \"all\"(반복 가능)\n"
+
+#: src/options.cpp:38
+msgid "IPv4/IPv6 address traffic to monitor (repeatable)\n"
+msgstr "모니터링할 IPv4/IPv6 주소 트래픽(반복 가능)\n"
+
+#: src/options.cpp:40
+msgid "chart system CPU (overall and each core)\n"
+msgstr "시스템 CPU 차트 표시(전체 및 코어별)\n"
+
+#: src/options.cpp:42
+msgid "chart system memory and swap\n"
+msgstr "시스템 메모리 및 스왑 차트 표시\n"
+
+#: src/options.cpp:44
+msgid "chart thread counts (alive / wait / total opened)\n"
+msgstr "스레드 수 차트 표시(활성 / 대기 / 열린 총계)\n"
+
+#: src/options.cpp:46
+msgid "chart open file-descriptor counts\n"
+msgstr "열린 파일 디스크립터 수 차트 표시\n"
+
+#: src/options.cpp:48
+msgid "chart net connections (alive / wait / total)\n"
+msgstr "네트워크 연결 차트 표시(활성 / 대기 / 합계)\n"
+
+#: src/options.cpp:50
+msgid "sample interval (default: 2s)\n"
+msgstr "샘플링 간격(기본값: 2s)\n"
+
+#: src/options.cpp:52
+msgid "default visible window; session history stays in memory (default: 3min)\n"
+msgstr "기본 표시 시간 범위. 세션 기록은 메모리에 유지됨(기본값: 3min)\n"
+
+#: src/options.cpp:54
+msgid "directory prefix for interval logs (name.pid.log)\n"
+msgstr "간격 로그의 디렉터리 접두사(name.pid.log)\n"
+
+#: src/options.cpp:56
+msgid "repeat for more verbose logging\n"
+msgstr "더 자세한 로깅을 위해 반복 지정\n"
+
+#: src/options.cpp:58
+msgid "show fewer logging messages\n"
+msgstr "로그 메시지를 줄여 표시\n"
+
+#: src/options.cpp:60
+msgid "display this help and exit\n"
+msgstr "이 도움말을 표시하고 종료\n"
+
+#: src/options.cpp:62
+msgid "output version information and exit\n"
+msgstr "버전 정보를 출력하고 종료\n"
+
+#: src/options.cpp:64
+msgid "Duration units: ms, s/sec (default), m/min, h. Examples: .5s, 5min.\n"
+msgstr "기간 단위: ms, s/sec(기본값), m/min, h. 예: .5s, 5min.\n"
+
+#: src/options.cpp:66
+#, c-format
+msgid "Report bugs to: <%s>\n"
+msgstr "버그 보고: <%s>\n"
+
+#: src/options.cpp:137
+#, c-format
+msgid "pidload: invalid interval: %s\n"
+msgstr "pidload: 잘못된 간격: %s\n"
+
+#: src/options.cpp:146
+#, c-format
+msgid "pidload: invalid window: %s\n"
+msgstr "pidload: 잘못된 시간 범위: %s\n"
+
+#: src/options.cpp:166
+#, c-format
+msgid "Copyright (C) %d %s\n"
+msgstr "저작권 (C) %d %s\n"
+
+#: src/options.cpp:167
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "라이선스 AGPL-3.0 이상: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+
+#: src/options.cpp:169
+msgid "This is free software: you are free to change and redistribute it.\n"
+msgstr "이 프로그램은 자유 소프트웨어입니다. 자유롭게 변경하고 재배포할 수 있습니다.\n"
+
+#: src/options.cpp:171
+msgid "This project opposes AI exploitation and AI hegemony.\n"
+msgstr "이 프로젝트는 AI 착취와 AI 패권에 반대합니다.\n"
+
+#: src/options.cpp:172
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "이 프로젝트는 무분별한 MIT식 라이선스와 정치적으로 순진한 BSD식 라이선스를 거부합니다.\n"
+
+#: src/options.cpp:175
+msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr "법률이 허용하는 범위에서 어떠한 보증도 제공하지 않습니다.\n"
+
+#: src/options.cpp:203
+#, c-format
+msgid "pidload: window must be >= interval\n"
+msgstr "pidload: 시간 범위는 간격 이상이어야 합니다\n"
+
+#: src/options.cpp:211
+#, c-format
+msgid "pidload: nothing to monitor; give NAME(s) and/or -d/-i/-a/-c/-m/-T/-F/-C\n"
+msgstr "pidload: 모니터링할 대상이 없습니다. 이름 및/또는 -d/-i/-a/-c/-m/-T/-F/-C를 지정하십시오\n"
+
+#: src/collector.cpp:35 src/collector.cpp:51
+msgid "read"
+msgstr "읽기"
+
+#: src/collector.cpp:37 src/collector.cpp:53
+msgid "write"
+msgstr "쓰기"
+
+#: src/collector.cpp:39 src/collector.cpp:45
+msgid "in"
+msgstr "수신"
+
+#: src/collector.cpp:41 src/collector.cpp:47
+msgid "out"
+msgstr "송신"
+
+#: src/collector.cpp:43
+msgid "drop"
+msgstr "드롭"
+
+#: src/collector.cpp:49
+msgid "cpu"
+msgstr "CPU"
+
+#: src/collector.cpp:55
+msgid "overall"
+msgstr "전체"
+
+#: src/collector.cpp:57
+msgid "core"
+msgstr "코어"
+
+#: src/collector.cpp:59
+msgid "used"
+msgstr "사용"
+
+#: src/collector.cpp:61
+msgid "avail"
+msgstr "가용"
+
+#: src/collector.cpp:63
+msgid "swap"
+msgstr "스왑"
+
+#: src/collector.cpp:65 src/collector.cpp:73
+msgid "alive"
+msgstr "활성"
+
+#: src/collector.cpp:67 src/collector.cpp:75
+msgid "wait"
+msgstr "대기"
+
+#: src/collector.cpp:69 src/collector.cpp:77
+msgid "total"
+msgstr "합계"
+
+#: src/collector.cpp:71
+msgid "open"
+msgstr "열림"
+
+#: src/collector.cpp:85
+msgid "Device I/O"
+msgstr "장치 I/O"
+
+#: src/collector.cpp:87
+msgid "Network"
+msgstr "네트워크"
+
+#: src/collector.cpp:89 src/dialogs.cpp:147
+msgid "Address"
+msgstr "주소"
+
+#: src/collector.cpp:91
+msgid "Process CPU"
+msgstr "프로세스 CPU"
+
+#: src/collector.cpp:93
+msgid "Process I/O"
+msgstr "프로세스 I/O"
+
+#: src/collector.cpp:95
+msgid "CPU"
+msgstr "CPU"
+
+#: src/collector.cpp:97
+msgid "Memory"
+msgstr "메모리"
+
+#: src/collector.cpp:99
+msgid "Threads"
+msgstr "스레드"
+
+#: src/collector.cpp:101
+msgid "File Descriptors"
+msgstr "파일 디스크립터"
+
+#: src/collector.cpp:103
+msgid "Connections"
+msgstr "연결"
+
+#: src/collector.cpp:105
+msgid "Chart"
+msgstr "차트"
+
+#: src/main_frame.cpp:44
+msgid "Failed to create output directory."
+msgstr "출력 디렉터리를 만들지 못했습니다."
+
+#: src/main_frame.cpp:63
+#, c-format
+msgid "interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to rearrange"
+msgstr "간격 %lld ms  |  보기 %lld ms  |  드래그하여 이동, 휠로 확대/축소  |  창을 드래그하여 재정렬"
+
+#: src/main_frame.cpp:75
+msgid "Open...\tCtrl+O"
+msgstr "열기…\tCtrl+O"
+
+#: src/main_frame.cpp:75
+msgid "Select a process from the list"
+msgstr "목록에서 프로세스를 선택하십시오"
+
+#: src/main_frame.cpp:78
+msgid "Open PID...\tCtrl+P"
+msgstr "PID 열기…\tCtrl+P"
+
+#: src/main_frame.cpp:78
+msgid "Monitor a process by PID"
+msgstr "PID로 프로세스 모니터링"
+
+#: src/main_frame.cpp:81
+msgid "Quit\tCtrl+Q"
+msgstr "종료\tCtrl+Q"
+
+#: src/main_frame.cpp:86
+msgid "Clear History\tCtrl+L"
+msgstr "기록 지우기\tCtrl+L"
+
+#: src/main_frame.cpp:86
+msgid "Clear all chart history"
+msgstr "모든 차트 기록 지우기"
+
+#: src/main_frame.cpp:89
+msgid "Copy Snapshot\tCtrl+C"
+msgstr "스냅숏 복사\tCtrl+C"
+
+#: src/main_frame.cpp:89
+msgid "Copy latest sample values"
+msgstr "최신 샘플 값 복사"
+
+#: src/main_frame.cpp:92
+msgid "Reset Layout\tCtrl+Shift+R"
+msgstr "레이아웃 초기화\tCtrl+Shift+R"
+
+#: src/main_frame.cpp:93
+msgid "Restore balanced auto layout"
+msgstr "균형 잡힌 자동 레이아웃 복원"
+
+#: src/main_frame.cpp:97
+msgid "CPU\tCtrl+Shift+C"
+msgstr "CPU\tCtrl+Shift+C"
+
+#: src/main_frame.cpp:98
+msgid "System CPU overall and per-core"
+msgstr "시스템 CPU 전체 및 코어별"
+
+#: src/main_frame.cpp:99
+msgid "Memory\tCtrl+Shift+M"
+msgstr "메모리\tCtrl+Shift+M"
+
+#: src/main_frame.cpp:100
+msgid "System memory and swap"
+msgstr "시스템 메모리 및 스왑"
+
+#: src/main_frame.cpp:101
+msgid "Network\tCtrl+Shift+N"
+msgstr "네트워크\tCtrl+Shift+N"
+
+#: src/main_frame.cpp:102
+msgid "Network interface traffic"
+msgstr "네트워크 인터페이스 트래픽"
+
+#: src/main_frame.cpp:103
+msgid "Threads\tCtrl+Shift+T"
+msgstr "스레드\tCtrl+Shift+T"
+
+#: src/main_frame.cpp:104
+msgid "Thread counts (alive / wait / total)"
+msgstr "스레드 수(활성 / 대기 / 합계)"
+
+#: src/main_frame.cpp:105
+msgid "File Descriptors\tCtrl+Shift+F"
+msgstr "파일 디스크립터\tCtrl+Shift+F"
+
+#: src/main_frame.cpp:106
+msgid "Open file-descriptor counts"
+msgstr "열린 파일 디스크립터 수"
+
+#: src/main_frame.cpp:107
+msgid "Connections\tCtrl+Shift+K"
+msgstr "연결\tCtrl+Shift+K"
+
+#: src/main_frame.cpp:108
+msgid "Net connections (alive / wait / total)"
+msgstr "네트워크 연결(활성 / 대기 / 합계)"
+
+#: src/main_frame.cpp:110
+msgid "Add...\tCtrl+Shift+A"
+msgstr "추가…\tCtrl+Shift+A"
+
+#: src/main_frame.cpp:111
+msgid "Add a capture (device/iface/addr/name)"
+msgstr "캡처 추가(장치/인터페이스/주소/이름)"
+
+#: src/main_frame.cpp:113
+msgid "Remove\tDelete"
+msgstr "제거\tDelete"
+
+#: src/main_frame.cpp:114
+msgid "Remove the focused chart capture"
+msgstr "포커스된 차트 캡처 제거"
+
+#: src/main_frame.cpp:117 src/chart_panel.cpp:153
+msgid "Legends\tCtrl+Shift+L"
+msgstr "범례\tCtrl+Shift+L"
+
+#: src/main_frame.cpp:117
+msgid "Show chart legends"
+msgstr "차트 범례 표시"
+
+#: src/main_frame.cpp:118 src/chart_panel.cpp:155
+msgid "Y-Log\tCtrl+Shift+Y"
+msgstr "Y축 로그\tCtrl+Shift+Y"
+
+#: src/main_frame.cpp:118
+msgid "Logarithmic Y axis"
+msgstr "로그 Y축"
+
+#: src/main_frame.cpp:121
+msgid "Dots\tAlt+1"
+msgstr "점\tAlt+1"
+
+#: src/main_frame.cpp:122
+msgid "Curve\tAlt+2"
+msgstr "곡선\tAlt+2"
+
+#: src/main_frame.cpp:123
+msgid "Bars (siblings)\tAlt+3"
+msgstr "막대(나란히)\tAlt+3"
+
+#: src/main_frame.cpp:124
+msgid "Stacked Bars\tAlt+4"
+msgstr "누적 막대\tAlt+4"
+
+#: src/main_frame.cpp:125 src/chart_panel.cpp:177
+msgid "Show as"
+msgstr "표시 형식"
+
+#: src/main_frame.cpp:128
+msgid "Segment\tAlt+Shift+1"
+msgstr "선분\tAlt+Shift+1"
+
+#: src/main_frame.cpp:129
+msgid "Quadratic\tAlt+Shift+2"
+msgstr "이차 곡선\tAlt+Shift+2"
+
+#: src/main_frame.cpp:130
+msgid "Bicubic\tAlt+Shift+3"
+msgstr "쌍삼차 곡선\tAlt+Shift+3"
+
+#: src/main_frame.cpp:131 src/chart_panel.cpp:194
+msgid "Display Curve"
+msgstr "곡선 표시"
+
+#: src/main_frame.cpp:135
+msgid "1 second\tCtrl+1"
+msgstr "1초\tCtrl+1"
+
+#: src/main_frame.cpp:136
+msgid "2 seconds\tCtrl+2"
+msgstr "2초\tCtrl+2"
+
+#: src/main_frame.cpp:137
+msgid "5 seconds\tCtrl+5"
+msgstr "5초\tCtrl+5"
+
+#: src/main_frame.cpp:138
+msgid "Refresh Interval"
+msgstr "새로 고침 간격"
+
+#: src/main_frame.cpp:141 src/chart_panel.cpp:216
+msgid "Reset Live View\tHome"
+msgstr "실시간 보기 초기화\tHome"
+
+#: src/main_frame.cpp:141
+msgid "Follow the live edge again"
+msgstr "실시간 가장자리를 다시 따라가기"
+
+#: src/main_frame.cpp:145
+msgid "About pidload\tF1"
+msgstr "pidload 정보\tF1"
+
+#: src/main_frame.cpp:149
+msgid "&File"
+msgstr "파일(&F)"
+
+#: src/main_frame.cpp:150
+msgid "&Edit"
+msgstr "편집(&E)"
+
+#: src/main_frame.cpp:151
+msgid "&View"
+msgstr "보기(&V)"
+
+#: src/main_frame.cpp:152
+msgid "&Help"
+msgstr "도움말(&H)"
+
+#: src/main_frame.cpp:266
+msgid "No charts — use View → Add… or enable CPU/Memory/Network/…"
+msgstr "차트 없음 — 보기 → 추가…를 사용하거나 CPU/메모리/네트워크/…를 활성화하십시오"
+
+#: src/main_frame.cpp:290
+#, c-format
+msgid "view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom"
+msgstr "보기 %lld–%lld ms (%s)  |  드래그하여 이동, 휠로 확대/축소"
+
+#: src/main_frame.cpp:293
+msgid "live"
+msgstr "실시간"
+
+#: src/main_frame.cpp:293
+msgid "paused"
+msgstr "일시 중지"
+
+#: src/main_frame.cpp:423
+#, c-format
+msgid "interval %lld ms"
+msgstr "간격 %lld ms"
+
+#: src/main_frame.cpp:513
+msgid "Snapshot copied to clipboard"
+msgstr "스냅숏을 클립보드에 복사했습니다"
+
+#: src/main_frame.cpp:591
+msgid "Click a chart first, then Remove."
+msgstr "먼저 차트를 클릭한 다음 제거를 선택하십시오."
+
+#: src/main_frame.cpp:677
+msgid "Process and traffic monitor with dockable charts."
+msgstr "도킹 가능한 차트가 있는 프로세스 및 트래픽 모니터."
+
+#: src/chart_panel.cpp:159
+msgid "Dots"
+msgstr "점"
+
+#: src/chart_panel.cpp:160
+msgid "Curve"
+msgstr "곡선"
+
+#: src/chart_panel.cpp:161
+msgid "Bars (siblings)"
+msgstr "막대(나란히)"
+
+#: src/chart_panel.cpp:162
+msgid "Stacked Bars"
+msgstr "누적 막대"
+
+#: src/chart_panel.cpp:180
+msgid "Segment"
+msgstr "선분"
+
+#: src/chart_panel.cpp:181
+msgid "Quadratic"
+msgstr "이차 곡선"
+
+#: src/chart_panel.cpp:182
+msgid "Bicubic"
+msgstr "쌍삼차 곡선"
+
+#: src/chart_panel.cpp:198
+msgid "Raw size"
+msgstr "원시 크기"
+
+#: src/chart_panel.cpp:199
+msgid "Payload size"
+msgstr "페이로드 크기"
+
+#: src/chart_panel.cpp:200
+msgid "Num of packets"
+msgstr "패킷 수"
+
+#: src/chart_panel.cpp:212
+msgid "Display Unit"
+msgstr "표시 단위"
+
+#: src/chart_panel.cpp:217
+msgid "Remove Chart\tDelete"
+msgstr "차트 제거\tDelete"
+
+#: src/chart_panel.cpp:753 src/chart_panel.cpp:889
+msgid "waiting for samples…"
+msgstr "샘플 대기 중…"
+
+#: src/chart_panel.cpp:857
+msgid "Processes"
+msgstr "프로세스"
+
+#: src/dialogs.cpp:74
+msgid "Open Process"
+msgstr "프로세스 열기"
+
+#: src/dialogs.cpp:78
+msgid "PID"
+msgstr "PID"
+
+#: src/dialogs.cpp:79
+msgid "UID"
+msgstr "UID"
+
+#: src/dialogs.cpp:80
+msgid "Command"
+msgstr "명령"
+
+#: src/dialogs.cpp:93
+msgid "Select a process to monitor:"
+msgstr "모니터링할 프로세스 선택:"
+
+#: src/dialogs.cpp:130
+msgid "Enter process ID:"
+msgstr "프로세스 ID 입력:"
+
+#: src/dialogs.cpp:130
+msgid "Open PID"
+msgstr "PID 열기"
+
+#: src/dialogs.cpp:136
+msgid "Invalid PID."
+msgstr "잘못된 PID입니다."
+
+#: src/dialogs.cpp:143
+msgid "Add Capture"
+msgstr "캡처 추가"
+
+#: src/dialogs.cpp:145
+msgid "Device"
+msgstr "장치"
+
+#: src/dialogs.cpp:146
+msgid "Interface"
+msgstr "인터페이스"
+
+#: src/dialogs.cpp:148
+msgid "Process NAME"
+msgstr "프로세스 이름"
+
+#: src/dialogs.cpp:152
+msgid "NAME: pid, exe, path, window title, or glob (* ?)"
+msgstr "이름: PID, 실행 파일, 경로, 창 제목 또는 glob(* ?)"
+
+#: src/dialogs.cpp:156
+msgid "Type:"
+msgstr "유형:"
+
+#: src/dialogs.cpp:158
+msgid "Value:"
+msgstr "값:"

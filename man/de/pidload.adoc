@@ -1,0 +1,156 @@
+= pidload(1)
+Lenik <pidload@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: Benutzerbefehle
+:mansource: pidload
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Name
+
+pidload - Prozesslast und Geräte-/Netzwerkverkehr überwachen
+
+== Übersicht
+
+*pidload* [_OPTION_]... [_NAME_]...
+
+== Beschreibung
+
+*pidload* opens a wxWidgets window that charts process CPU/I/O and selected
+Blockieren Sie den Geräte- und Netzwerkverkehr.
+Proben werden alle *--interval* genommen; *--window* legt die standardmäßige Sichtbarkeit fest
+Spanne. Der Sitzungsverlauf wird im Speicher gespeichert – ziehen Sie zum Schwenken und verwenden Sie das Mausrad
+zum Zoomen (alle Diagramme haben die gleiche Zeitansicht). Zumindest ein Diagramm zeigt
+Beschriftungen der verstrichenen Zeit auf der X-Achse.
+
+*Ansicht → Kurve anzeigen* wählt die segmentierte, quadratische oder bikubische Interpolation aus.
+Bei Netzwerkdiagrammen wechselt das Kontextmenü *Anzeigeeinheit* zwischen Rohgröße,
+Nutzlastgröße (Drahtbytes abzüglich einer Ethernet-Header-Schätzung) und Paketanzahl.
+
+Jeder _NAME_ wählt Prozesse aus. Der Abgleich wird wie folgt versucht: PID, Name der ausführbaren Datei,
+ausführbarer Pfad, Fenstertitel, dann mit Glob-Zeichen (*`*`*, *`?`*) an
+Name, Pfad und Fenstertitel der ausführbaren Datei.
+Ein einfacher Name stimmt auch mit Fenstertiteln überein, die ihn als ganzes Wort enthalten
+(Groß- und Kleinschreibung wird nicht beachtet), sodass „editor“ mit „/bin/editor“ und einem Fenstertitel übereinstimmen kann
+„Irgendein Herausgeber“.
+
+Mehrere übereinstimmende Prozesse verwenden unterschiedliche Linienstile (durchgezogen, gestrichelt, gepunktet usw.);
+10 Stile, dann wiederverwendet). Prozessdiagramme zeigen eine separate Prozesslegende für
+jeden Prozess umschalten.
+
+Wenn *--output* festgelegt ist, wird jede überwachte Entität in diesem Verzeichnis aufgezeichnet
+(eine Zeile pro Intervall). Prozessprotokolle haben den Namen _NAME_._PID_`.log`.
+
+=== Aufzeichnungsfelder
+
+*netdev* (_IFACE_`.log`)::
+`; Eingehend Ausgehend verworfen
+
+*block device* (_DEV_`.log`)::
+`; lesen und schreiben` (Bytes; Sektoren × 512 aus `/proc/diskstats`)
+
+*address* (_ADDR_`.log`)::
+`; eingehend ausgehend‘
+
+*process* (_NAME_._PID_`.log`)::
+`; cpu_pct lesen und schreiben`
+
+*cpu* (`cpu.log`)::
+`; insgesamt core0 …`
+
+*memory* (`memory.log`)::
+`; used_kb avail_kb swap_used_kb`
+
+*threads* (_NAME_._PID_`.threads.log` or `threads.log`)::
+`; lebendig warte total_opened`
+
+*fds* (_NAME_._PID_`.fds.log`)::
+`; open_fds`
+
+*connections* (_NAME_._PID_`.conn.log` or `connections.log`)::
+`; lebendig warte total`
+
+== Optionen
+
+*-d, --dev* _DEVICE_::
+Überwachen Sie die E/A von Blockgeräten. Wiederholbar.
+
+*-i, --iface* _NETDEV_::
+Überwachen Sie eine Netzwerkschnittstelle oder „alle“. Wiederholbar.
+
+*-a, --addr* _NETADDR_::
+Überwachen Sie den Datenverkehr für eine IPv4/IPv6-Adresse. Wiederholbar.
+
+*-c, --cpu*::
+Diagramm der System-CPU (insgesamt und pro Kern).
+
+*-m, --memory*::
+Speicher und Austausch des Kartensystems.
+
+*-T, --threads*::
+Anzahl der Diagramm-Threads: aktuell aktiv, wartend (nicht ausgeführt) und insgesamt eindeutig
+  Threads, die während der Sitzung geöffnet wurden. Ohne _NAME_ werden systemweite Gesamtwerte dargestellt.
+
+*-F, --numfd*::
+Diagramm der Anzahl geöffneter Dateideskriptoren für übereinstimmende Prozesse.
+
+*-C, --connections*::
+Diagramm der Anzahl der TCP/UDP-Verbindungen: aktiv (hergestellt / vorhanden), warten (FIN /
+  TIME_WAIT / …) und die Gesamtzahl der gesehenen eindeutigen Sockets. Ohne _NAME_, Diagramme
+  systemweite „/proc/net“-Sockets.
+
+*-t, --interval* _D_::
+Abtastzeitraum (Standard: „2s“). Einheiten: `ms`, `s`/`sec` (Standard), `m`/`min`, `h`.
+
+*-w, --window* _D_::
+Standardmäßige sichtbare Zeitspanne (Standard: „3 Minuten“). Muss ≥ Intervall sein.
+  Der vollständige Sitzungsverlauf bleibt im Speicher erhalten; Ziehen Sie zum Schwenken und verwenden Sie die Maus
+  Rad zum Zoomen (gemeinsam in allen Diagrammen).
+
+*-o, --output* _PATH_::
+Verzeichnis für Intervallprotokolle (wird bei Bedarf erstellt).
+
+*-v, --verbose*::
+Erhöhen Sie die Ausführlichkeit der Protokollierung.
+
+*-q, --quiet*::
+Verringern Sie die Ausführlichkeit der Protokollierung.
+
+*-h, --help*::
+Drucken Sie eine Nutzungszusammenfassung und beenden Sie den Vorgang erfolgreich.
+
+*--version*::
+Versions- und Lizenzinformationen drucken und erfolgreich beenden.
+
+== Beispiele
+
+....
+pidload editor
+pidload -c -m -o /tmp/pl -t 1s '*term*' firefox
+pidload -d nvme0n1 -i lo 1234
+....
+
+== Exit-Status
+
+*0*::
+Erfolgreich (einschließlich *--help* / *--version*).
+
+*1*::
+Ungültige Optionen oder Startfehler.
+
+== Autor
+
+Geschrieben von {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {Projektjahr}.
+Lizenz AGPL-3.0 oder höher.
+Dies ist freie Software: Es steht Ihnen frei, sie unter der Bedingung zu ändern und weiterzuverbreiten
+Bedingungen der GNU Affero General Public License.
+Es besteht KEINE GEWÄHRLEISTUNG, soweit gesetzlich zulässig.
+Den vollständigen Lizenztext finden Sie in der LICENSE-Datei in der Quelldistribution.
+einschließlich ergänzender Bedingungen, die besagen, dass dieses Projekt die Ausbeutung von KI ablehnt und
+KI-Hegemonie und lehnt gedankenlose und politisch naive Lizenzen im MIT-Stil ab
+Lizenzierung im BSD-Stil.

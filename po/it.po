@@ -1,0 +1,614 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pidload 0.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-16 00:25+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/options.cpp:23
+msgid ""
+"Usage: pidload [OPTION]... [NAME]...\n"
+"Monitor process load and selected device/network traffic in a wxWidgets window.\n"
+msgstr ""
+"Uso: pidload [OPZIONE]... [NOME]...\n"
+"Monitora il carico dei processi e il traffico selezionato di dispositivi/rete in una finestra wxWidgets.\n"
+
+#: src/options.cpp:27
+msgid ""
+"Each NAME matches processes, tried as:\n"
+"  pid, executable name, executable path, window title,\n"
+"  executable glob name, executable glob path, window glob title.\n"
+"Glob characters: * ?   Example: pidload editor   pidload '*term*'\n"
+msgstr ""
+"Ogni NOME viene confrontato con i processi come:\n"
+"  PID, nome o percorso dell’eseguibile, titolo della finestra,\n"
+"  glob del nome o percorso dell’eseguibile, o del titolo della finestra.\n"
+"Caratteri glob: * ?   Esempio: pidload editor   pidload '*term*'\n"
+
+#: src/options.cpp:34
+msgid "block device I/O to monitor (repeatable)\n"
+msgstr "I/O del dispositivo a blocchi da monitorare (ripetibile)\n"
+
+#: src/options.cpp:36
+msgid "netdev to monitor, or \"all\" (repeatable)\n"
+msgstr "Dispositivo di rete da monitorare o \"all\" (ripetibile)\n"
+
+#: src/options.cpp:38
+msgid "IPv4/IPv6 address traffic to monitor (repeatable)\n"
+msgstr "Traffico dell’indirizzo IPv4/IPv6 da monitorare (ripetibile)\n"
+
+#: src/options.cpp:40
+msgid "chart system CPU (overall and each core)\n"
+msgstr "Grafico della CPU di sistema (totale e per core)\n"
+
+#: src/options.cpp:42
+msgid "chart system memory and swap\n"
+msgstr "Grafico della memoria di sistema e dello swap\n"
+
+#: src/options.cpp:44
+msgid "chart thread counts (alive / wait / total opened)\n"
+msgstr "Grafico del numero di thread (attivi / in attesa / totale aperti)\n"
+
+#: src/options.cpp:46
+msgid "chart open file-descriptor counts\n"
+msgstr "Grafico del numero di descrittori di file aperti\n"
+
+#: src/options.cpp:48
+msgid "chart net connections (alive / wait / total)\n"
+msgstr "Grafico delle connessioni di rete (attive / in attesa / totale)\n"
+
+#: src/options.cpp:50
+msgid "sample interval (default: 2s)\n"
+msgstr "Intervallo di campionamento (predefinito: 2s)\n"
+
+#: src/options.cpp:52
+msgid "default visible window; session history stays in memory (default: 3min)\n"
+msgstr "Finestra temporale visibile predefinita; la cronologia della sessione resta in memoria (predefinita: 3min)\n"
+
+#: src/options.cpp:54
+msgid "directory prefix for interval logs (name.pid.log)\n"
+msgstr "Prefisso della directory per i log degli intervalli (name.pid.log)\n"
+
+#: src/options.cpp:56
+msgid "repeat for more verbose logging\n"
+msgstr "Ripetere per una registrazione più dettagliata\n"
+
+#: src/options.cpp:58
+msgid "show fewer logging messages\n"
+msgstr "Mostra meno messaggi di log\n"
+
+#: src/options.cpp:60
+msgid "display this help and exit\n"
+msgstr "Mostra questo aiuto ed esce\n"
+
+#: src/options.cpp:62
+msgid "output version information and exit\n"
+msgstr "Mostra le informazioni sulla versione ed esce\n"
+
+#: src/options.cpp:64
+msgid "Duration units: ms, s/sec (default), m/min, h. Examples: .5s, 5min.\n"
+msgstr "Unità di durata: ms, s/sec (predefinita), m/min, h. Esempi: .5s, 5min.\n"
+
+#: src/options.cpp:66
+#, c-format
+msgid "Report bugs to: <%s>\n"
+msgstr "Segnalare i bug a: <%s>\n"
+
+#: src/options.cpp:137
+#, c-format
+msgid "pidload: invalid interval: %s\n"
+msgstr "pidload: intervallo non valido: %s\n"
+
+#: src/options.cpp:146
+#, c-format
+msgid "pidload: invalid window: %s\n"
+msgstr "pidload: finestra temporale non valida: %s\n"
+
+#: src/options.cpp:166
+#, c-format
+msgid "Copyright (C) %d %s\n"
+msgstr "Diritto d’autore (C) %d %s\n"
+
+#: src/options.cpp:167
+msgid "License AGPL-3.0-or-later: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+msgstr "Licenza AGPL-3.0 o successiva: <https://www.gnu.org/licenses/agpl-3.0.html>\n"
+
+#: src/options.cpp:169
+msgid "This is free software: you are free to change and redistribute it.\n"
+msgstr "Questo è software libero: è possibile modificarlo e ridistribuirlo.\n"
+
+#: src/options.cpp:171
+msgid "This project opposes AI exploitation and AI hegemony.\n"
+msgstr "Questo progetto si oppone allo sfruttamento e all’egemonia dell’IA.\n"
+
+#: src/options.cpp:172
+msgid "This project rejects mindless MIT-style licensing and politically naive BSD-style licensing.\n"
+msgstr "Questo progetto rifiuta le licenze sconsiderate in stile MIT e quelle politicamente ingenue in stile BSD.\n"
+
+#: src/options.cpp:175
+msgid "There is NO WARRANTY, to the extent permitted by law.\n"
+msgstr "NON è fornita ALCUNA GARANZIA, nei limiti consentiti dalla legge.\n"
+
+#: src/options.cpp:203
+#, c-format
+msgid "pidload: window must be >= interval\n"
+msgstr "pidload: la finestra deve essere >= all’intervallo\n"
+
+#: src/options.cpp:211
+#, c-format
+msgid "pidload: nothing to monitor; give NAME(s) and/or -d/-i/-a/-c/-m/-T/-F/-C\n"
+msgstr "pidload: nulla da monitorare; specificare uno o più NOMI e/o -d/-i/-a/-c/-m/-T/-F/-C\n"
+
+#: src/collector.cpp:35 src/collector.cpp:51
+msgid "read"
+msgstr "lettura"
+
+#: src/collector.cpp:37 src/collector.cpp:53
+msgid "write"
+msgstr "scrittura"
+
+#: src/collector.cpp:39 src/collector.cpp:45
+msgid "in"
+msgstr "ingresso"
+
+#: src/collector.cpp:41 src/collector.cpp:47
+msgid "out"
+msgstr "uscita"
+
+#: src/collector.cpp:43
+msgid "drop"
+msgstr "scartati"
+
+#: src/collector.cpp:49
+msgid "cpu"
+msgstr "CPU"
+
+#: src/collector.cpp:55
+msgid "overall"
+msgstr "totale"
+
+#: src/collector.cpp:57
+msgid "core"
+msgstr "nucleo"
+
+#: src/collector.cpp:59
+msgid "used"
+msgstr "usata"
+
+#: src/collector.cpp:61
+msgid "avail"
+msgstr "disponibile"
+
+#: src/collector.cpp:63
+msgid "swap"
+msgstr "scambio"
+
+#: src/collector.cpp:65 src/collector.cpp:73
+msgid "alive"
+msgstr "attivi"
+
+#: src/collector.cpp:67 src/collector.cpp:75
+msgid "wait"
+msgstr "attesa"
+
+#: src/collector.cpp:69 src/collector.cpp:77
+msgid "total"
+msgstr "totale"
+
+#: src/collector.cpp:71
+msgid "open"
+msgstr "aperti"
+
+#: src/collector.cpp:85
+msgid "Device I/O"
+msgstr "I/O dispositivo"
+
+#: src/collector.cpp:87
+msgid "Network"
+msgstr "Rete"
+
+#: src/collector.cpp:89 src/dialogs.cpp:147
+msgid "Address"
+msgstr "Indirizzo"
+
+#: src/collector.cpp:91
+msgid "Process CPU"
+msgstr "CPU processo"
+
+#: src/collector.cpp:93
+msgid "Process I/O"
+msgstr "I/O processo"
+
+#: src/collector.cpp:95
+msgid "CPU"
+msgstr "CPU"
+
+#: src/collector.cpp:97
+msgid "Memory"
+msgstr "Memoria"
+
+#: src/collector.cpp:99
+msgid "Threads"
+msgstr "Thread"
+
+#: src/collector.cpp:101
+msgid "File Descriptors"
+msgstr "Descrittori di file"
+
+#: src/collector.cpp:103
+msgid "Connections"
+msgstr "Connessioni"
+
+#: src/collector.cpp:105
+msgid "Chart"
+msgstr "Grafico"
+
+#: src/main_frame.cpp:44
+msgid "Failed to create output directory."
+msgstr "Impossibile creare la directory di output."
+
+#: src/main_frame.cpp:63
+#, c-format
+msgid "interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to rearrange"
+msgstr "intervallo %lld ms  |  vista %lld ms  |  trascina per spostare, rotella per zoomare  |  trascina i riquadri per riordinarli"
+
+#: src/main_frame.cpp:75
+msgid "Open...\tCtrl+O"
+msgstr "Apri…\tCtrl+O"
+
+#: src/main_frame.cpp:75
+msgid "Select a process from the list"
+msgstr "Seleziona un processo dall’elenco"
+
+#: src/main_frame.cpp:78
+msgid "Open PID...\tCtrl+P"
+msgstr "Apri PID…\tCtrl+P"
+
+#: src/main_frame.cpp:78
+msgid "Monitor a process by PID"
+msgstr "Monitora un processo tramite PID"
+
+#: src/main_frame.cpp:81
+msgid "Quit\tCtrl+Q"
+msgstr "Esci\tCtrl+Q"
+
+#: src/main_frame.cpp:86
+msgid "Clear History\tCtrl+L"
+msgstr "Cancella cronologia\tCtrl+L"
+
+#: src/main_frame.cpp:86
+msgid "Clear all chart history"
+msgstr "Cancella tutta la cronologia dei grafici"
+
+#: src/main_frame.cpp:89
+msgid "Copy Snapshot\tCtrl+C"
+msgstr "Copia istantanea\tCtrl+C"
+
+#: src/main_frame.cpp:89
+msgid "Copy latest sample values"
+msgstr "Copia gli ultimi valori campionati"
+
+#: src/main_frame.cpp:92
+msgid "Reset Layout\tCtrl+Shift+R"
+msgstr "Ripristina disposizione\tCtrl+Shift+R"
+
+#: src/main_frame.cpp:93
+msgid "Restore balanced auto layout"
+msgstr "Ripristina la disposizione automatica bilanciata"
+
+#: src/main_frame.cpp:97
+msgid "CPU\tCtrl+Shift+C"
+msgstr "CPU\tCtrl+Shift+C"
+
+#: src/main_frame.cpp:98
+msgid "System CPU overall and per-core"
+msgstr "CPU di sistema totale e per core"
+
+#: src/main_frame.cpp:99
+msgid "Memory\tCtrl+Shift+M"
+msgstr "Memoria\tCtrl+Shift+M"
+
+#: src/main_frame.cpp:100
+msgid "System memory and swap"
+msgstr "Memoria di sistema e swap"
+
+#: src/main_frame.cpp:101
+msgid "Network\tCtrl+Shift+N"
+msgstr "Rete\tCtrl+Shift+N"
+
+#: src/main_frame.cpp:102
+msgid "Network interface traffic"
+msgstr "Traffico dell’interfaccia di rete"
+
+#: src/main_frame.cpp:103
+msgid "Threads\tCtrl+Shift+T"
+msgstr "Thread\tCtrl+Shift+T"
+
+#: src/main_frame.cpp:104
+msgid "Thread counts (alive / wait / total)"
+msgstr "Numero di thread (attivi / in attesa / totale)"
+
+#: src/main_frame.cpp:105
+msgid "File Descriptors\tCtrl+Shift+F"
+msgstr "Descrittori di file\tCtrl+Shift+F"
+
+#: src/main_frame.cpp:106
+msgid "Open file-descriptor counts"
+msgstr "Numero di descrittori di file aperti"
+
+#: src/main_frame.cpp:107
+msgid "Connections\tCtrl+Shift+K"
+msgstr "Connessioni\tCtrl+Shift+K"
+
+#: src/main_frame.cpp:108
+msgid "Net connections (alive / wait / total)"
+msgstr "Connessioni di rete (attive / in attesa / totale)"
+
+#: src/main_frame.cpp:110
+msgid "Add...\tCtrl+Shift+A"
+msgstr "Aggiungi…\tCtrl+Shift+A"
+
+#: src/main_frame.cpp:111
+msgid "Add a capture (device/iface/addr/name)"
+msgstr "Aggiungi un’acquisizione (dispositivo/interfaccia/indirizzo/nome)"
+
+#: src/main_frame.cpp:113
+msgid "Remove\tDelete"
+msgstr "Rimuovi\tDelete"
+
+#: src/main_frame.cpp:114
+msgid "Remove the focused chart capture"
+msgstr "Rimuovi l’acquisizione del grafico attivo"
+
+#: src/main_frame.cpp:117 src/chart_panel.cpp:153
+msgid "Legends\tCtrl+Shift+L"
+msgstr "Legende\tCtrl+Shift+L"
+
+#: src/main_frame.cpp:117
+msgid "Show chart legends"
+msgstr "Mostra le legende dei grafici"
+
+#: src/main_frame.cpp:118 src/chart_panel.cpp:155
+msgid "Y-Log\tCtrl+Shift+Y"
+msgstr "Y logaritmico\tCtrl+Shift+Y"
+
+#: src/main_frame.cpp:118
+msgid "Logarithmic Y axis"
+msgstr "Asse Y logaritmico"
+
+#: src/main_frame.cpp:121
+msgid "Dots\tAlt+1"
+msgstr "Punti\tAlt+1"
+
+#: src/main_frame.cpp:122
+msgid "Curve\tAlt+2"
+msgstr "Curva\tAlt+2"
+
+#: src/main_frame.cpp:123
+msgid "Bars (siblings)\tAlt+3"
+msgstr "Barre (affiancate)\tAlt+3"
+
+#: src/main_frame.cpp:124
+msgid "Stacked Bars\tAlt+4"
+msgstr "Barre impilate\tAlt+4"
+
+#: src/main_frame.cpp:125 src/chart_panel.cpp:177
+msgid "Show as"
+msgstr "Mostra come"
+
+#: src/main_frame.cpp:128
+msgid "Segment\tAlt+Shift+1"
+msgstr "Segmenti\tAlt+Shift+1"
+
+#: src/main_frame.cpp:129
+msgid "Quadratic\tAlt+Shift+2"
+msgstr "Quadratica\tAlt+Shift+2"
+
+#: src/main_frame.cpp:130
+msgid "Bicubic\tAlt+Shift+3"
+msgstr "Bicubica\tAlt+Shift+3"
+
+#: src/main_frame.cpp:131 src/chart_panel.cpp:194
+msgid "Display Curve"
+msgstr "Visualizzazione curva"
+
+#: src/main_frame.cpp:135
+msgid "1 second\tCtrl+1"
+msgstr "1 secondo\tCtrl+1"
+
+#: src/main_frame.cpp:136
+msgid "2 seconds\tCtrl+2"
+msgstr "2 secondi\tCtrl+2"
+
+#: src/main_frame.cpp:137
+msgid "5 seconds\tCtrl+5"
+msgstr "5 secondi\tCtrl+5"
+
+#: src/main_frame.cpp:138
+msgid "Refresh Interval"
+msgstr "Intervallo di aggiornamento"
+
+#: src/main_frame.cpp:141 src/chart_panel.cpp:216
+msgid "Reset Live View\tHome"
+msgstr "Ripristina vista in tempo reale\tHome"
+
+#: src/main_frame.cpp:141
+msgid "Follow the live edge again"
+msgstr "Segui nuovamente il bordo in tempo reale"
+
+#: src/main_frame.cpp:145
+msgid "About pidload\tF1"
+msgstr "Informazioni su pidload\tF1"
+
+#: src/main_frame.cpp:149
+msgid "&File"
+msgstr "File"
+
+#: src/main_frame.cpp:150
+msgid "&Edit"
+msgstr "&Modifica"
+
+#: src/main_frame.cpp:151
+msgid "&View"
+msgstr "&Visualizza"
+
+#: src/main_frame.cpp:152
+msgid "&Help"
+msgstr "&Aiuto"
+
+#: src/main_frame.cpp:266
+msgid "No charts — use View → Add… or enable CPU/Memory/Network/…"
+msgstr "Nessun grafico — usa Visualizza → Aggiungi… o abilita CPU/Memoria/Rete/…"
+
+#: src/main_frame.cpp:290
+#, c-format
+msgid "view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom"
+msgstr "vista %lld–%lld ms (%s)  |  trascina per spostare, rotella per zoomare"
+
+#: src/main_frame.cpp:293
+msgid "live"
+msgstr "tempo reale"
+
+#: src/main_frame.cpp:293
+msgid "paused"
+msgstr "in pausa"
+
+#: src/main_frame.cpp:423
+#, c-format
+msgid "interval %lld ms"
+msgstr "intervallo %lld ms"
+
+#: src/main_frame.cpp:513
+msgid "Snapshot copied to clipboard"
+msgstr "Istantanea copiata negli appunti"
+
+#: src/main_frame.cpp:591
+msgid "Click a chart first, then Remove."
+msgstr "Fai prima clic su un grafico, quindi su Rimuovi."
+
+#: src/main_frame.cpp:677
+msgid "Process and traffic monitor with dockable charts."
+msgstr "Monitor di processi e traffico con grafici agganciabili."
+
+#: src/chart_panel.cpp:159
+msgid "Dots"
+msgstr "Punti"
+
+#: src/chart_panel.cpp:160
+msgid "Curve"
+msgstr "Curva"
+
+#: src/chart_panel.cpp:161
+msgid "Bars (siblings)"
+msgstr "Barre (affiancate)"
+
+#: src/chart_panel.cpp:162
+msgid "Stacked Bars"
+msgstr "Barre impilate"
+
+#: src/chart_panel.cpp:180
+msgid "Segment"
+msgstr "Segmenti"
+
+#: src/chart_panel.cpp:181
+msgid "Quadratic"
+msgstr "Quadratica"
+
+#: src/chart_panel.cpp:182
+msgid "Bicubic"
+msgstr "Bicubica"
+
+#: src/chart_panel.cpp:198
+msgid "Raw size"
+msgstr "Dimensione grezza"
+
+#: src/chart_panel.cpp:199
+msgid "Payload size"
+msgstr "Dimensione payload"
+
+#: src/chart_panel.cpp:200
+msgid "Num of packets"
+msgstr "Numero di pacchetti"
+
+#: src/chart_panel.cpp:212
+msgid "Display Unit"
+msgstr "Unità di visualizzazione"
+
+#: src/chart_panel.cpp:217
+msgid "Remove Chart\tDelete"
+msgstr "Rimuovi grafico\tDelete"
+
+#: src/chart_panel.cpp:753 src/chart_panel.cpp:889
+msgid "waiting for samples…"
+msgstr "in attesa dei campioni…"
+
+#: src/chart_panel.cpp:857
+msgid "Processes"
+msgstr "Processi"
+
+#: src/dialogs.cpp:74
+msgid "Open Process"
+msgstr "Apri processo"
+
+#: src/dialogs.cpp:78
+msgid "PID"
+msgstr "PID"
+
+#: src/dialogs.cpp:79
+msgid "UID"
+msgstr "UID"
+
+#: src/dialogs.cpp:80
+msgid "Command"
+msgstr "Comando"
+
+#: src/dialogs.cpp:93
+msgid "Select a process to monitor:"
+msgstr "Seleziona un processo da monitorare:"
+
+#: src/dialogs.cpp:130
+msgid "Enter process ID:"
+msgstr "Inserisci l’ID del processo:"
+
+#: src/dialogs.cpp:130
+msgid "Open PID"
+msgstr "Apri PID"
+
+#: src/dialogs.cpp:136
+msgid "Invalid PID."
+msgstr "PID non valido."
+
+#: src/dialogs.cpp:143
+msgid "Add Capture"
+msgstr "Aggiungi acquisizione"
+
+#: src/dialogs.cpp:145
+msgid "Device"
+msgstr "Dispositivo"
+
+#: src/dialogs.cpp:146
+msgid "Interface"
+msgstr "Interfaccia"
+
+#: src/dialogs.cpp:148
+msgid "Process NAME"
+msgstr "NOME processo"
+
+#: src/dialogs.cpp:152
+msgid "NAME: pid, exe, path, window title, or glob (* ?)"
+msgstr "NOME: PID, eseguibile, percorso, titolo finestra o glob (* ?)"
+
+#: src/dialogs.cpp:156
+msgid "Type:"
+msgstr "Tipo:"
+
+#: src/dialogs.cpp:158
+msgid "Value:"
+msgstr "Valore:"

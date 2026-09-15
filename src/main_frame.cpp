@@ -7,6 +7,7 @@
 #include "main_frame.hpp"
 #include "config.h"
 #include "dialogs.hpp"
+#include "wx_tr.hpp"
 
 #include <wx/aboutdlg.h>
 #include <wx/artprov.h>
@@ -40,7 +41,7 @@ MainFrame::MainFrame(const Options &opt)
     collector_ = std::make_unique<Collector>(opt_);
     recorder_ = std::make_unique<Recorder>(opt_);
     if (!recorder_->ok()) {
-        wxMessageBox("Failed to create output directory.", "pidload", wxOK | wxICON_ERROR);
+        wxMessageBox(tr("Failed to create output directory."), "pidload", wxOK | wxICON_ERROR);
     }
 
     time_view_.set_capture_window(opt_.window_ms);
@@ -59,7 +60,8 @@ MainFrame::MainFrame(const Options &opt)
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
     timer_.Start(static_cast<int>(opt_.interval_ms));
     SetStatusText(wxString::Format(
-        "interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to rearrange",
+        tr("interval %lld ms  |  view %lld ms  |  drag to pan, wheel to zoom  |  drag panes to "
+           "rearrange"),
         static_cast<long long>(opt_.interval_ms), static_cast<long long>(opt_.window_ms)));
 }
 
@@ -69,81 +71,85 @@ MainFrame::~MainFrame() {
 
 void MainFrame::BuildMenu() {
     auto *file = new wxMenu;
-    wxMenuItem *open = file->Append(ID_OpenProcess, "Open...\tCtrl+O", "Select a process from the list");
+    wxMenuItem *open =
+        file->Append(ID_OpenProcess, tr("Open...\tCtrl+O"), tr("Select a process from the list"));
     set_item_bitmap(open, wxART_LIST_VIEW);
     wxMenuItem *open_pid =
-        file->Append(ID_OpenPid, "Open PID...\tCtrl+P", "Monitor a process by PID");
+        file->Append(ID_OpenPid, tr("Open PID...\tCtrl+P"), tr("Monitor a process by PID"));
     set_item_bitmap(open_pid, wxART_EXECUTABLE_FILE);
     file->AppendSeparator();
-    wxMenuItem *quit = file->Append(wxID_EXIT, "Quit\tCtrl+Q");
+    wxMenuItem *quit = file->Append(wxID_EXIT, tr("Quit\tCtrl+Q"));
     set_item_bitmap(quit, wxART_QUIT);
 
     auto *edit = new wxMenu;
     wxMenuItem *clear =
-        edit->Append(ID_ClearHistory, "Clear History\tCtrl+L", "Clear all chart history");
+        edit->Append(ID_ClearHistory, tr("Clear History\tCtrl+L"), tr("Clear all chart history"));
     set_item_bitmap(clear, wxART_DELETE);
     wxMenuItem *copy =
-        edit->Append(ID_CopySnapshot, "Copy Snapshot\tCtrl+C", "Copy latest sample values");
+        edit->Append(ID_CopySnapshot, tr("Copy Snapshot\tCtrl+C"), tr("Copy latest sample values"));
     set_item_bitmap(copy, wxART_COPY);
     edit->AppendSeparator();
-    wxMenuItem *reset_layout =
-        edit->Append(ID_ResetLayout, "Reset Layout\tCtrl+Shift+R", "Restore balanced auto layout");
+    wxMenuItem *reset_layout = edit->Append(ID_ResetLayout, tr("Reset Layout\tCtrl+Shift+R"),
+                                            tr("Restore balanced auto layout"));
     set_item_bitmap(reset_layout, wxART_REDO);
 
     auto *view = new wxMenu;
-    view->AppendCheckItem(ID_ViewCpu, "CPU\tCtrl+Shift+C", "System CPU overall and per-core");
-    view->AppendCheckItem(ID_ViewMemory, "Memory\tCtrl+Shift+M", "System memory and swap");
-    view->AppendCheckItem(ID_ViewNetwork, "Network\tCtrl+Shift+N", "Network interface traffic");
-    view->AppendCheckItem(ID_ViewThreads, "Threads\tCtrl+Shift+T",
-                          "Thread counts (alive / wait / total)");
-    view->AppendCheckItem(ID_ViewNumFd, "File Descriptors\tCtrl+Shift+F",
-                          "Open file-descriptor counts");
-    view->AppendCheckItem(ID_ViewConnections, "Connections\tCtrl+Shift+K",
-                          "Net connections (alive / wait / total)");
+    view->AppendCheckItem(ID_ViewCpu, tr("CPU\tCtrl+Shift+C"),
+                          tr("System CPU overall and per-core"));
+    view->AppendCheckItem(ID_ViewMemory, tr("Memory\tCtrl+Shift+M"),
+                          tr("System memory and swap"));
+    view->AppendCheckItem(ID_ViewNetwork, tr("Network\tCtrl+Shift+N"),
+                          tr("Network interface traffic"));
+    view->AppendCheckItem(ID_ViewThreads, tr("Threads\tCtrl+Shift+T"),
+                          tr("Thread counts (alive / wait / total)"));
+    view->AppendCheckItem(ID_ViewNumFd, tr("File Descriptors\tCtrl+Shift+F"),
+                          tr("Open file-descriptor counts"));
+    view->AppendCheckItem(ID_ViewConnections, tr("Connections\tCtrl+Shift+K"),
+                          tr("Net connections (alive / wait / total)"));
     view->AppendSeparator();
-    wxMenuItem *add =
-        view->Append(ID_AddCapture, "Add...\tCtrl+Shift+A", "Add a capture (device/iface/addr/name)");
+    wxMenuItem *add = view->Append(ID_AddCapture, tr("Add...\tCtrl+Shift+A"),
+                                   tr("Add a capture (device/iface/addr/name)"));
     set_item_bitmap(add, wxART_PLUS);
-    wxMenuItem *rem =
-        view->Append(ID_RemoveCapture, "Remove\tDelete", "Remove the focused chart capture");
+    wxMenuItem *rem = view->Append(ID_RemoveCapture, tr("Remove\tDelete"),
+                                   tr("Remove the focused chart capture"));
     set_item_bitmap(rem, wxART_MINUS);
     view->AppendSeparator();
-    view->AppendCheckItem(ID_ViewLegends, "Legends\tCtrl+Shift+L", "Show chart legends");
-    view->AppendCheckItem(ID_ViewYLog, "Y-Log\tCtrl+Shift+Y", "Logarithmic Y axis");
+    view->AppendCheckItem(ID_ViewLegends, tr("Legends\tCtrl+Shift+L"), tr("Show chart legends"));
+    view->AppendCheckItem(ID_ViewYLog, tr("Y-Log\tCtrl+Shift+Y"), tr("Logarithmic Y axis"));
 
     auto *show_as = new wxMenu;
-    show_as->AppendRadioItem(ID_ShowDots, "Dots\tAlt+1");
-    show_as->AppendRadioItem(ID_ShowCurve, "Curve\tAlt+2");
-    show_as->AppendRadioItem(ID_ShowBars, "Bars (siblings)\tAlt+3");
-    show_as->AppendRadioItem(ID_ShowStacked, "Stacked Bars\tAlt+4");
-    view->AppendSubMenu(show_as, "Show as");
+    show_as->AppendRadioItem(ID_ShowDots, tr("Dots\tAlt+1"));
+    show_as->AppendRadioItem(ID_ShowCurve, tr("Curve\tAlt+2"));
+    show_as->AppendRadioItem(ID_ShowBars, tr("Bars (siblings)\tAlt+3"));
+    show_as->AppendRadioItem(ID_ShowStacked, tr("Stacked Bars\tAlt+4"));
+    view->AppendSubMenu(show_as, tr("Show as"));
 
     auto *curve = new wxMenu;
-    curve->AppendRadioItem(ID_CurveSeg, "Segment\tAlt+Shift+1");
-    curve->AppendRadioItem(ID_CurveQuad, "Quadratic\tAlt+Shift+2");
-    curve->AppendRadioItem(ID_CurveCubic, "Bicubic\tAlt+Shift+3");
-    view->AppendSubMenu(curve, "Display Curve");
+    curve->AppendRadioItem(ID_CurveSeg, tr("Segment\tAlt+Shift+1"));
+    curve->AppendRadioItem(ID_CurveQuad, tr("Quadratic\tAlt+Shift+2"));
+    curve->AppendRadioItem(ID_CurveCubic, tr("Bicubic\tAlt+Shift+3"));
+    view->AppendSubMenu(curve, tr("Display Curve"));
 
     view->AppendSeparator();
     auto *interval = new wxMenu;
-    interval->AppendRadioItem(ID_Interval1s, "1 second\tCtrl+1");
-    interval->AppendRadioItem(ID_Interval2s, "2 seconds\tCtrl+2");
-    interval->AppendRadioItem(ID_Interval5s, "5 seconds\tCtrl+5");
-    view->AppendSubMenu(interval, "Refresh Interval");
+    interval->AppendRadioItem(ID_Interval1s, tr("1 second\tCtrl+1"));
+    interval->AppendRadioItem(ID_Interval2s, tr("2 seconds\tCtrl+2"));
+    interval->AppendRadioItem(ID_Interval5s, tr("5 seconds\tCtrl+5"));
+    view->AppendSubMenu(interval, tr("Refresh Interval"));
     view->AppendSeparator();
     wxMenuItem *reset_view =
-        view->Append(ID_ResetView, "Reset Live View\tHome", "Follow the live edge again");
+        view->Append(ID_ResetView, tr("Reset Live View\tHome"), tr("Follow the live edge again"));
     set_item_bitmap(reset_view, wxART_GO_FORWARD);
 
     auto *help = new wxMenu;
-    wxMenuItem *about = help->Append(ID_About, "About pidload\tF1");
+    wxMenuItem *about = help->Append(ID_About, tr("About pidload\tF1"));
     set_item_bitmap(about, wxART_INFORMATION);
 
     auto *bar = new wxMenuBar;
-    bar->Append(file, "&File");
-    bar->Append(edit, "&Edit");
-    bar->Append(view, "&View");
-    bar->Append(help, "&Help");
+    bar->Append(file, tr("&File"));
+    bar->Append(edit, tr("&Edit"));
+    bar->Append(view, tr("&View"));
+    bar->Append(help, tr("&Help"));
     SetMenuBar(bar);
 
     Bind(wxEVT_MENU, &MainFrame::OnOpenProcess, this, ID_OpenProcess);
@@ -257,7 +263,7 @@ void MainFrame::RebuildPanes() {
         active_chart_id_ = charts.front().id;
     } else {
         active_chart_id_.clear();
-        SetStatusText("No charts — use View → Add… or enable CPU/Memory/Network/…");
+        SetStatusText(tr("No charts — use View → Add… or enable CPU/Memory/Network/…"));
     }
 }
 
@@ -281,10 +287,10 @@ void MainFrame::RefreshAllCharts() {
         kv.second->RefreshData();
     }
     SetStatusText(wxString::Format(
-        "view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom",
+        tr("view %lld–%lld ms (%s)  |  drag to pan, wheel to zoom"),
         static_cast<long long>(time_view_.view_start()),
         static_cast<long long>(time_view_.view_end),
-        time_view_.follow_live ? "live" : "paused"));
+        time_view_.follow_live ? _("live") : _("paused")));
 }
 
 void MainFrame::ApplyDefaultLayout() {
@@ -414,7 +420,7 @@ void MainFrame::SetIntervalMs(int64_t ms) {
     collector_->set_interval_ms(ms);
     opt_.interval_ms = ms;
     timer_.Start(static_cast<int>(ms));
-    SetStatusText(wxString::Format("interval %lld ms", static_cast<long long>(ms)));
+    SetStatusText(wxString::Format(tr("interval %lld ms"), static_cast<long long>(ms)));
     SyncViewMenu();
 }
 
@@ -504,7 +510,7 @@ void MainFrame::OnCopySnapshot(wxCommandEvent &) {
     if (wxTheClipboard->Open()) {
         wxTheClipboard->SetData(new wxTextDataObject(wxString::FromUTF8(ss.str().c_str())));
         wxTheClipboard->Close();
-        SetStatusText("Snapshot copied to clipboard");
+        SetStatusText(tr("Snapshot copied to clipboard"));
     }
 }
 
@@ -582,7 +588,7 @@ void MainFrame::OnAddCapture(wxCommandEvent &) {
 
 void MainFrame::OnRemoveCapture(wxCommandEvent &) {
     if (active_chart_id_.empty()) {
-        wxMessageBox("Click a chart first, then Remove.", "pidload", wxOK | wxICON_INFORMATION,
+        wxMessageBox(tr("Click a chart first, then Remove."), "pidload", wxOK | wxICON_INFORMATION,
                      this);
         return;
     }
@@ -668,7 +674,7 @@ void MainFrame::OnAbout(wxCommandEvent &) {
     wxAboutDialogInfo info;
     info.SetName("pidload");
     info.SetVersion(PROJECT_VERSION);
-    info.SetDescription("Process and traffic monitor with dockable charts.");
+    info.SetDescription(tr("Process and traffic monitor with dockable charts."));
     info.SetCopyright(wxString::Format("(C) %d %s", PROJECT_YEAR, PROJECT_AUTHOR));
     info.SetWebSite(wxString::Format("mailto:%s", PROJECT_EMAIL));
     info.AddDeveloper(PROJECT_AUTHOR);

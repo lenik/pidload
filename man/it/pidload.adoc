@@ -1,0 +1,156 @@
+= pidload(1)
+Lenik <pidload@bodz.net>
+v{project-version}, {project-year}
+:doctype: manpage
+:manmanual: Comandi utente
+:mansource: pidload
+:man-linkstyle: blue R <>
+:nofooter:
+
+== Nome
+
+pidload - monitorare il carico dei processi e il traffico di dispositivi/rete
+
+== Sintassi
+
+*pidload* [_OPTION_]... [_NAME_]...
+
+== Descrizione
+
+*pidload* opens a wxWidgets window that charts process CPU/I/O and selected
+dispositivo a blocchi e traffico di rete.
+I campioni vengono prelevati ogni *--intervallo*; *--window* imposta la visibilità predefinita
+arco. La cronologia delle sessioni viene conservata in memoria: trascina per eseguire la panoramica e utilizza la rotellina del mouse
+per ingrandire (tutti i grafici condividono la stessa visualizzazione temporale). Viene visualizzato almeno un grafico
+etichette del tempo trascorso sull'asse X.
+
+*Visualizza → Visualizza curva* seleziona l'interpolazione Segmento, Quadratica o Bicubica.
+Sui grafici di rete, il menu contestuale *Unità di visualizzazione* commuta tra dimensioni grezze,
+dimensione del carico utile (byte di filo meno una stima dell'intestazione Ethernet) e conteggio dei pacchetti.
+
+Ciascun _NAME_ seleziona i processi. La corrispondenza viene tentata come: pid, nome dell'eseguibile,
+percorso dell'eseguibile, titolo della finestra, quindi con caratteri glob (*`*`*, *`?`*) su
+nome dell'eseguibile, percorso e titolo della finestra.
+Un nome semplice corrisponde anche ai titoli delle finestre che lo contengono come parola intera
+(senza distinzione tra maiuscole e minuscole), quindi `editor` può corrispondere a `/bin/editor` e ad una finestra intitolata
+``Un certo redattore``.
+
+Più processi abbinati utilizzano stili di linea distinti (continuo, tratteggiato, punteggiato,...;
+10 stili, poi riutilizzati). I grafici dei processi mostrano una legenda del processo separata per
+attivando/disattivando ciascun processo.
+
+Quando è impostato *--output*, ogni entità monitorata viene registrata in quella directory
+(una riga per intervallo). I log dei processi sono denominati _NAME_._PID_`.log`.
+
+=== Campi di registrazione
+
+*netdev* (_IFACE_`.log`)::
+`; in entrata in uscita è caduto`
+
+*block device* (_DEV_`.log`)::
+`; leggi scrivi` (byte; settori × 512 da `/proc/diskstats`)
+
+*address* (_ADDR_`.log`)::
+`; in entrata in uscita».
+
+*process* (_NAME_._PID_`.log`)::
+`; cpu_pct leggi scrivi`
+
+*cpu* (`cpu.log`)::
+`; nucleo complessivo0 …».
+
+*memory* (`memory.log`)::
+`; used_kb disponibili_kb swap_used_kb`
+
+*threads* (_NAME_._PID_`.threads.log` or `threads.log`)::
+`; vivo aspetta totale_aperto`
+
+*fds* (_NAME_._PID_`.fds.log`)::
+`; open_fds`
+
+*connections* (_NAME_._PID_`.conn.log` or `connections.log`)::
+`; vivo aspetta totale`
+
+== Opzioni
+
+*-d, --dev* _DEVICE_::
+Monitorare l'I/O dei dispositivi a blocchi. Ripetibile.
+
+*-i, --iface* _NETDEV_::
+Monitora un'interfaccia di rete o "tutti". Ripetibile.
+
+*-a, --addr* _NETADDR_::
+Monitorare il traffico per un indirizzo IPv4/IPv6. Ripetibile.
+
+*-c, --cpu*::
+CPU del sistema grafico (complessivo e ciascun core).
+
+*-m, --memory*::
+Memoria e scambio del sistema cartografico.
+
+*-T, --threads*::
+Conteggi dei thread del grafico: attualmente attivi, in attesa (non in esecuzione) e univoci totali
+  discussioni aperte durante la sessione. Senza _NAME_, vengono tracciati i totali a livello di sistema.
+
+*-F, --numfd*::
+Conteggi dei descrittori di file aperti del grafico per i processi corrispondenti.
+
+*-C, --connections*::
+Conteggi delle connessioni TCP/UDP del grafico: attive (stabilite / presenti), in attesa (FIN /
+  TIME_WAIT /...) e il totale dei socket univoci visti. Senza _NAME_, grafici
+  socket `/proc/net` a livello di sistema.
+
+*-t, --interval* _D_::
+Periodo di campionamento (predefinito: `2s`). Unità: `ms`, `s`/`sec` (predefinito), `m`/`min`, `h`.
+
+*-w, --window* _D_::
+Intervallo di tempo visibile predefinito (predefinito: `3min`). Deve essere ≥ intervallo.
+  La cronologia completa della sessione viene conservata in memoria; trascina per eseguire la panoramica e utilizza il mouse
+  rotella per ingrandire (condivisa in tutte le carte).
+
+*-o, --output* _PATH_::
+Directory per i registri degli intervalli (creata se necessario).
+
+*-v, --verbose*::
+Aumentare la verbosità della registrazione.
+
+*-q, --quiet*::
+Diminuire la verbosità della registrazione.
+
+*-h, --help*::
+Stampa un riepilogo dell'utilizzo ed esci con successo.
+
+*--version*::
+Stampa le informazioni sulla versione e sulla licenza ed esci con successo.
+
+== Esempi
+
+....
+pidload editor
+pidload -c -m -o /tmp/pl -t 1s '*term*' firefox
+pidload -d nvme0n1 -i lo 1234
+....
+
+== Stato di uscita
+
+*0*::
+Operazione riuscita (inclusi *--help* / *--version*).
+
+*1*::
+Opzioni non valide o errore di avvio.
+
+== Autore
+
+Scritto da {project-author} <{project-email}>.
+
+== Copyright
+
+Copyright (C) {anno-progetto}.
+Licenza AGPL-3.0 o successiva.
+Questo è software gratuito: sei libero di modificarlo e ridistribuirlo sotto la licenza
+termini della GNU Affero General Public License.
+NON C'È GARANZIA, nella misura consentita dalla legge.
+Vedi il file LICENSE nella distribuzione sorgente per il testo completo della licenza,
+compresi termini supplementari che affermano che questo progetto si oppone allo sfruttamento dell'intelligenza artificiale e
+L’egemonia dell’intelligenza artificiale e il rifiuto delle licenze insensate in stile MIT e politicamente ingenue
+Licenza in stile BSD.

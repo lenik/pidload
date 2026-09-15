@@ -47,6 +47,8 @@ meson install -C build --destdir=%{buildroot}
 %{_bindir}/pidload
 %{_datadir}/bash-completion/completions/pidload
 %{_mandir}/man1/pidload.1*
+%{_mandir}/*/man1/pidload.1*
+%{_datadir}/locale/*/LC_MESSAGES/pidload.mo
 %{_datadir}/doc/%{name}/
 
 %changelog
