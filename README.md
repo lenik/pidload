@@ -38,7 +38,7 @@ Process charts have a separate process legend for toggling.
 Drag on a chart to pan the shared time view; mouse wheel zooms (all charts stay
 in sync). At least one chart shows elapsed-time labels on the X axis.
 
-**View → Display Curve** chooses Segment / Quadratic / Bicubic interpolation.
+**View → Display Curve** chooses Segment / Bezier / Bicubic interpolation.
 On a network chart, the context menu **Display Unit** switches raw size,
 payload size (wire minus Ethernet header estimate), or packet counts.
 

@@ -24,7 +24,7 @@ lapso. El historial de sesiones se guarda en la memoria: arrastre para desplazar
 para hacer zoom (todos los gráficos comparten la misma vista de tiempo). Al menos un gráfico muestra
 etiquetas de tiempo transcurrido en el eje X.
 
-*Ver → Mostrar curva* selecciona la interpolación de segmento, cuadrática o bicúbica.
+*Ver → Mostrar curva* selecciona la interpolación de segmento, Bézier o bicúbica.
 En los gráficos de red, el menú contextual *Unidad de visualización* cambia entre tamaño sin formato,
 tamaño de carga útil (bytes de cable menos una estimación del encabezado Ethernet) y recuento de paquetes.
 

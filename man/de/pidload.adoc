@@ -24,7 +24,7 @@ Spanne. Der Sitzungsverlauf wird im Speicher gespeichert – ziehen Sie zum Schw
 zum Zoomen (alle Diagramme haben die gleiche Zeitansicht). Zumindest ein Diagramm zeigt
 Beschriftungen der verstrichenen Zeit auf der X-Achse.
 
-*Ansicht → Kurve anzeigen* wählt die segmentierte, quadratische oder bikubische Interpolation aus.
+*Ansicht → Kurve anzeigen* wählt die segmentierte, Bezier- oder bikubische Interpolation aus.
 Bei Netzwerkdiagrammen wechselt das Kontextmenü *Anzeigeeinheit* zwischen Rohgröße,
 Nutzlastgröße (Drahtbytes abzüglich einer Ethernet-Header-Schätzung) und Paketanzahl.
 

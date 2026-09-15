@@ -126,7 +126,7 @@ void MainFrame::BuildMenu() {
 
     auto *curve = new wxMenu;
     curve->AppendRadioItem(ID_CurveSeg, tr("Segment\tAlt+Shift+1"));
-    curve->AppendRadioItem(ID_CurveQuad, tr("Quadratic\tAlt+Shift+2"));
+    curve->AppendRadioItem(ID_CurveBezier, tr("Bezier\tAlt+Shift+2"));
     curve->AppendRadioItem(ID_CurveCubic, tr("Bicubic\tAlt+Shift+3"));
     view->AppendSubMenu(curve, tr("Display Curve"));
 
@@ -172,7 +172,7 @@ void MainFrame::BuildMenu() {
     Bind(wxEVT_MENU, &MainFrame::OnShowAs, this, ID_ShowBars);
     Bind(wxEVT_MENU, &MainFrame::OnShowAs, this, ID_ShowStacked);
     Bind(wxEVT_MENU, &MainFrame::OnCurveStyle, this, ID_CurveSeg);
-    Bind(wxEVT_MENU, &MainFrame::OnCurveStyle, this, ID_CurveQuad);
+    Bind(wxEVT_MENU, &MainFrame::OnCurveStyle, this, ID_CurveBezier);
     Bind(wxEVT_MENU, &MainFrame::OnCurveStyle, this, ID_CurveCubic);
     Bind(wxEVT_MENU, &MainFrame::OnInterval, this, ID_Interval1s);
     Bind(wxEVT_MENU, &MainFrame::OnInterval, this, ID_Interval2s);
@@ -213,8 +213,8 @@ void MainFrame::SyncViewMenu() {
     case CurveStyle::Segment:
         bar->Check(ID_CurveSeg, true);
         break;
-    case CurveStyle::Quadratic:
-        bar->Check(ID_CurveQuad, true);
+    case CurveStyle::Bezier:
+        bar->Check(ID_CurveBezier, true);
         break;
     case CurveStyle::Bicubic:
         bar->Check(ID_CurveCubic, true);
@@ -643,8 +643,8 @@ void MainFrame::OnShowAs(wxCommandEvent &event) {
 void MainFrame::OnCurveStyle(wxCommandEvent &event) {
     if (event.GetId() == ID_CurveSeg) {
         ApplyCurveStyleToAll(CurveStyle::Segment);
-    } else if (event.GetId() == ID_CurveQuad) {
-        ApplyCurveStyleToAll(CurveStyle::Quadratic);
+    } else if (event.GetId() == ID_CurveBezier) {
+        ApplyCurveStyleToAll(CurveStyle::Bezier);
     } else {
         ApplyCurveStyleToAll(CurveStyle::Bicubic);
     }

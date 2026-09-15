@@ -36,7 +36,7 @@ pidload [OPTION]... [NAME]...
 在任一图表上拖动可平移共享时间视图，滚轮缩放（所有图表同步）。至少有一个图表
 在 X 轴显示经过时间标签。
 
-**View → Display Curve** 可选 Segment / Quadratic / Bicubic 插值。
+**View → Display Curve** 可选 Segment / Bezier / Bicubic 插值。
 网络图右键菜单 **Display Unit** 可切换原始字节、载荷估算或包数量。
 
 ## 构建

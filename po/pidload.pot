@@ -407,7 +407,7 @@ msgid "Segment\tAlt+Shift+1"
 msgstr ""
 
 #: src/main_frame.cpp:129
-msgid "Quadratic\tAlt+Shift+2"
+msgid "Bezier\tAlt+Shift+2"
 msgstr ""
 
 #: src/main_frame.cpp:130
@@ -517,7 +517,7 @@ msgid "Segment"
 msgstr ""
 
 #: src/chart_panel.cpp:181
-msgid "Quadratic"
+msgid "Bezier"
 msgstr ""
 
 #: src/chart_panel.cpp:182

@@ -64,7 +64,7 @@ private:
         ID_CtxBars,
         ID_CtxStacked,
         ID_CtxCurveSeg,
-        ID_CtxCurveQuad,
+        ID_CtxCurveBezier,
         ID_CtxCurveCubic,
         ID_CtxUnitRaw,
         ID_CtxUnitPayload,

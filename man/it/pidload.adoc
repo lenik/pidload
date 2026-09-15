@@ -24,7 +24,7 @@ arco. La cronologia delle sessioni viene conservata in memoria: trascina per ese
 per ingrandire (tutti i grafici condividono la stessa visualizzazione temporale). Viene visualizzato almeno un grafico
 etichette del tempo trascorso sull'asse X.
 
-*Visualizza → Visualizza curva* seleziona l'interpolazione Segmento, Quadratica o Bicubica.
+*Visualizza → Visualizza curva* seleziona l'interpolazione Segmento, Bezier o Bicubica.
 Sui grafici di rete, il menu contestuale *Unità di visualizzazione* commuta tra dimensioni grezze,
 dimensione del carico utile (byte di filo meno una stima dell'intestazione Ethernet) e conteggio dei pacchetti.
 

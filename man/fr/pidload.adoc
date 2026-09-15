@@ -24,7 +24,7 @@ durée. L'historique de la session est conservé en mémoire : faites glisser p
 pour zoomer (tous les graphiques partagent la même vue temporelle). Au moins un graphique montre
 étiquettes de temps écoulé sur l’axe X.
 
-*Affichage → Courbe d'affichage* sélectionne l'interpolation segmentaire, quadratique ou bicubique.
+*Affichage → Courbe d'affichage* sélectionne l'interpolation segmentaire, Bézier ou bicubique.
 Sur les cartes de réseau, le menu contextuel *Unité d'affichage* bascule entre la taille brute,
 taille de la charge utile (octets de fil moins une estimation de l'en-tête Ethernet) et nombre de paquets.
 

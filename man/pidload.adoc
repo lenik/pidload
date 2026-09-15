@@ -24,7 +24,7 @@ span. Session history is kept in memory — drag to pan and use the mouse wheel
 to zoom (all charts share the same time view). At least one chart shows
 elapsed-time labels on the X axis.
 
-*View → Display Curve* selects Segment, Quadratic, or Bicubic interpolation.
+*View → Display Curve* selects Segment, Bezier, or Bicubic interpolation.
 On network charts, the context menu *Display Unit* switches among raw size,
 payload size (wire bytes minus an Ethernet-header estimate), and packet counts.
 

@@ -178,14 +178,14 @@ void ChartPanel::OnRightDown(wxMouseEvent &event) {
 
     auto *curve = new wxMenu;
     curve->AppendRadioItem(ID_CtxCurveSeg, tr("Segment"));
-    curve->AppendRadioItem(ID_CtxCurveQuad, tr("Quadratic"));
+    curve->AppendRadioItem(ID_CtxCurveBezier, tr("Bezier"));
     curve->AppendRadioItem(ID_CtxCurveCubic, tr("Bicubic"));
     switch (curve_style_) {
     case CurveStyle::Segment:
         curve->Check(ID_CtxCurveSeg, true);
         break;
-    case CurveStyle::Quadratic:
-        curve->Check(ID_CtxCurveQuad, true);
+    case CurveStyle::Bezier:
+        curve->Check(ID_CtxCurveBezier, true);
         break;
     case CurveStyle::Bicubic:
         curve->Check(ID_CtxCurveCubic, true);
@@ -241,8 +241,8 @@ void ChartPanel::OnContextCommand(wxCommandEvent &event) {
     case ID_CtxCurveSeg:
         SetCurveStyle(CurveStyle::Segment);
         break;
-    case ID_CtxCurveQuad:
-        SetCurveStyle(CurveStyle::Quadratic);
+    case ID_CtxCurveBezier:
+        SetCurveStyle(CurveStyle::Bezier);
         break;
     case ID_CtxCurveCubic:
         SetCurveStyle(CurveStyle::Bicubic);
@@ -1051,7 +1051,7 @@ void ChartPanel::DrawSeries(wxDC &dc, const std::vector<DrawnSeries> &drawn, con
             continue;
         }
 
-        if (curve_style_ == CurveStyle::Quadratic) {
+        if (curve_style_ == CurveStyle::Bezier) {
             /* Midpoint quadratic Bezier chain (passes near samples). */
             auto draw_quad = [&](double t0, double v0, double tc, double vc, double t1, double v1) {
                 int steps = std::max(

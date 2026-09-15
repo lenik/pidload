@@ -48,7 +48,7 @@ private:
         ID_ShowBars,
         ID_ShowStacked,
         ID_CurveSeg,
-        ID_CurveQuad,
+        ID_CurveBezier,
         ID_CurveCubic,
         ID_Interval1s,
         ID_Interval2s,

@@ -23,7 +23,7 @@ enum class ChartShowAs {
 /* Interpolation used when Show-as is Curve. */
 enum class CurveStyle {
     Segment = 0, /* polyline */
-    Quadratic,   /* quadratic Bezier through midpoints */
+    Bezier,      /* quadratic Bezier through midpoints */
     Bicubic,     /* Catmull-Rom cubic spline */
 };
 
