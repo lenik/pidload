@@ -409,7 +409,7 @@ msgstr "Segmenti\tAlt+Shift+1"
 
 #: src/main_frame.cpp:129
 msgid "Bezier\tAlt+Shift+2"
-msgstr "Bezier	Alt+Shift+2"
+msgstr "Bézier	Alt+Shift+2"
 
 #: src/main_frame.cpp:130
 msgid "Bicubic\tAlt+Shift+3"
@@ -519,7 +519,7 @@ msgstr "Segmenti"
 
 #: src/chart_panel.cpp:181
 msgid "Bezier"
-msgstr "Bezier"
+msgstr "Bézier"
 
 #: src/chart_panel.cpp:182
 msgid "Bicubic"
