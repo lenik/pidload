@@ -7,7 +7,7 @@
 Name:           pidload
 Version:        %{version}
 Release:        1%{?dist}
-Summary:        Simple C CLI project template with example app
+Summary:        wxWidgets process and traffic monitor
 
 License:        AGPL-3.0-or-later
 URL:            https://github.com/lenik/pidload
@@ -18,11 +18,13 @@ BuildRequires:  meson
 BuildRequires:  ninja-build
 BuildRequires:  pkgconf
 BuildRequires:  asciidoctor
+BuildRequires:  libbas-c-devel
+BuildRequires:  wxGTK3-devel
+BuildRequires:  libX11-devel
 
 %description
-pidload is a Meson-based template for small C command-line utilities
-(no shared/static library packaging). It ships the pidload example
-application, AsciiDoc man pages, bash completion, and Debian packaging.
+pidload charts process CPU/I/O and selected block-device and network
+traffic in a sliding window, with optional per-interval log recording.
 
 %prep
 %setup -q -n %{name}-%{srcversion}
