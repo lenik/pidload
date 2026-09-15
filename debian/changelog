@@ -1,5 +1,15 @@
 pidload (0.0.1) unstable; urgency=medium
 
-  * Initial release
+  * Initial release: wxWidgets process and traffic monitor.
+  * Chart process CPU/I/O, block-device and network traffic; session history
+    in memory with -w as the default visible span.
+  * Add -d/-i/-a/-c/-m/-T/-F/-C/-t/-w/-o CLI; record per-interval logs under
+    --output as <name>.<pid>.log (and related counter logs).
+  * Build with C++17 and libwxgtk3.2; AUI dockable charts and menus.
+  * Match NAME as pid/exe/path/window title/globs; per-process line styles.
+  * Sync pan (drag) and zoom (wheel) across charts; time X-axis labels.
+  * Display Curve styles (Segment / Quadratic / Bicubic); network Display Unit
+    (raw size / payload size / packets) via context menu.
+  * Menu icons and keyboard shortcuts for common actions.
 
- -- Lenik <pub.lenik@bodz.net>  Tue, 15 Sep 2026 21:07:17 +0800
+ -- Lenik (谢继雷) <lenik@bodz.net>  Tue, 15 Sep 2026 23:50:00 +0800

@@ -1,32 +1,62 @@
-THIS FILE IS GENERATED FROM A TEMPLATE.
-Except for the project and program names, all content is placeholder text.
-Please rewrite this file to reflect the specific details of the current project.
-
 # pidload
 
-`pidload` is a simple Meson-based **C CLI** template (no shared/static library packaging).
-`pidload` is one **example app**; more apps can be added via `app_sources` in `meson.build`.
+`pidload` is a **wxWidgets** process and traffic monitor for Linux.
+It charts CPU/I/O for selected processes and optional block-device / network /
+system CPU / memory traffic in a sliding window, with dockable panes and
+optional per-interval log recording.
 
-## Repository layout
-
-- `src/` - application sources (`pidload.c`) and small helpers (`commons.c`)
-- `tests/` - minimal unit tests (no Check dependency)
-- `debian/` - Debian packaging metadata
-- `man/` - AsciiDoc man page sources (`man/*.adoc`)
-- `meson.build` - top-level build definition
-
-## Example app: `pidload`
+## Usage
 
 ```bash
-pidload [OPTION]... [FILE]...
+pidload [OPTION]... [NAME]...
 ```
 
-Cat-like: concatenates files to stdout. Supports `-v`/`--verbose`, `-q`/`--quiet`, `-h`/`--help`, `--version`.
+Each `NAME` matches processes as: pid, executable name, path, window title,
+or globs (`*`, `?`). Example: `pidload editor` matches `/bin/editor` and a
+window titled “Some Editor”.
+
+Multiple processes get distinct line styles (10 styles, then reused).
+Process charts have a separate process legend for toggling.
+
+### Options
+
+| Option | Meaning |
+|--------|---------|
+| `-d`, `--dev DEVICE` | Block device I/O (repeatable) |
+| `-i`, `--iface NETDEV`/`all` | Netdev(s) |
+| `-a`, `--addr NETADDR` | Address traffic |
+| `-c`, `--cpu` | System CPU (overall + cores) |
+| `-m`, `--memory` | System memory + swap |
+| `-T`, `--threads` | Thread counts (alive / wait / total opened) |
+| `-F`, `--numfd` | Open file-descriptor counts |
+| `-C`, `--connections` | Net connections (alive / wait / total) |
+| `-t`, `--interval D` | Sample interval (default `2s`) |
+| `-w`, `--window D` | Default visible window (default `3min`); session history is kept in memory |
+| `-o`, `--output PATH` | Directory for logs (`name.pid.log`) |
+| `-v` / `-q` / `-h` / `--version` | Verbose, quiet, help, version |
+
+Drag on a chart to pan the shared time view; mouse wheel zooms (all charts stay
+in sync). At least one chart shows elapsed-time labels on the X axis.
+
+**View → Display Curve** chooses Segment / Quadratic / Bicubic interpolation.
+On a network chart, the context menu **Display Unit** switches raw size,
+payload size (wire minus Ethernet header estimate), or packet counts.
+
+### Recording
+
+With `-o /tmp/prefix`:
+
+```
+/tmp/prefix/editor.1234.log
+; cpu_pct read write
+12.50 4096 0
+...
+```
 
 ## Build
 
 ```bash
-sudo apt install meson ninja-build gcc pkg-config asciidoctor
+sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev asciidoctor
 meson setup /build
 ninja -C /build
 meson test -C /build

@@ -1,6 +1,6 @@
 project(
     'pidload',
-    'c',
+    ['c', 'cpp'],
     version: run_command(
         'sh',
         '-c', '''
@@ -21,6 +21,7 @@ project(
     license: 'AGPL-3.0-or-later',
     default_options: [
         'c_std=c99',
+        'cpp_std=c++17',
         'warning_level=2',
     ],
 )
@@ -54,28 +55,32 @@ configure_file(
 bas_c_dep = dependency('bas-c', required: true)
 bas_args = ['-DLOGGER_NAME=' + meson.project_name(), '-DTEXT_DOMAIN=' + meson.project_name()]
 
+wx_dep = dependency('wxwidgets', version: '>=3.0', required: true, modules: ['std', 'aui'])
+x11_dep = dependency('x11', required: true)
+
 inc = include_directories('src', '.')
 
-app_sources = [
-    'src/pidload.c',
+pidload_sources = [
+    'src/pidload.cpp',
+    'src/options.cpp',
+    'src/util.cpp',
+    'src/process_match.cpp',
+    'src/collector.cpp',
+    'src/recorder.cpp',
+    'src/chart_panel.cpp',
+    'src/main_frame.cpp',
+    'src/dialogs.cpp',
 ]
 
-common_sources = [
-    'src/commons.c',
-]
-
-foreach source : app_sources
-    name = fs.stem(source.split('/')[-1])
-    executable(
-        name,
-        [source] + common_sources,
-        include_directories: inc,
-        dependencies: [bas_c_dep],
-        c_args: bas_args,
-        install: true,
-        install_dir: bindir,
-    )
-endforeach
+executable(
+    'pidload',
+    pidload_sources,
+    include_directories: inc,
+    dependencies: [bas_c_dep, wx_dep, x11_dep],
+    cpp_args: bas_args,
+    install: true,
+    install_dir: bindir,
+)
 
 bash_files = [
     'pidload.bash',

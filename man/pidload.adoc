@@ -9,31 +9,113 @@ v{project-version}, {project-year}
 
 == Name
 
-pidload - concatenate files to standard output
+pidload - monitor process load and device/network traffic
 
 == Synopsis
 
-*pidload* [_OPTION_]... [_FILE_]...
+*pidload* [_OPTION_]... [_NAME_]...
 
 == Description
 
-Copy each _FILE_ to standard output in order.
-If _FILE_ is a single dash (*-*), read standard input at that position.
-If no _FILE_ is given, read standard input once.
+*pidload* opens a wxWidgets window that charts process CPU/I/O and selected
+block-device and network traffic.
+Samples are taken every *--interval*; *--window* sets the default visible
+span. Session history is kept in memory — drag to pan and use the mouse wheel
+to zoom (all charts share the same time view). At least one chart shows
+elapsed-time labels on the X axis.
 
-*pidload* is similar in spirit to *cat*(1): it writes the concatenation of
-inputs to standard output.
+*View → Display Curve* selects Segment, Quadratic, or Bicubic interpolation.
+On network charts, the context menu *Display Unit* switches among raw size,
+payload size (wire bytes minus an Ethernet-header estimate), and packet counts.
+
+Each _NAME_ selects processes. Matching is tried as: pid, executable name,
+executable path, window title, then with glob characters (*`*`*, *`?`*) on
+executable name, path, and window title.
+A plain name also matches window titles that contain it as a whole word
+(case-insensitive), so `editor` can match `/bin/editor` and a window titled
+``Some Editor``.
+
+Multiple matched processes use distinct line styles (solid, dashed, dotted, …;
+10 styles, then reused). Process charts show a separate process legend for
+toggling each process.
+
+When *--output* is set, each monitored entity is recorded under that directory
+(one line per interval). Process logs are named _NAME_._PID_`.log`.
+
+=== Recording fields
+
+*netdev* (_IFACE_`.log`)::
+  `; inbound outbound dropped`
+
+*block device* (_DEV_`.log`)::
+  `; read write` (bytes; sectors × 512 from `/proc/diskstats`)
+
+*address* (_ADDR_`.log`)::
+  `; inbound outbound`
+
+*process* (_NAME_._PID_`.log`)::
+  `; cpu_pct read write`
+
+*cpu* (`cpu.log`)::
+  `; overall core0 …`
+
+*memory* (`memory.log`)::
+  `; used_kb avail_kb swap_used_kb`
+
+*threads* (_NAME_._PID_`.threads.log` or `threads.log`)::
+  `; alive wait total_opened`
+
+*fds* (_NAME_._PID_`.fds.log`)::
+  `; open_fds`
+
+*connections* (_NAME_._PID_`.conn.log` or `connections.log`)::
+  `; alive wait total`
 
 == Options
 
+*-d, --dev* _DEVICE_::
+  Monitor block-device I/O. Repeatable.
+
+*-i, --iface* _NETDEV_::
+  Monitor a network interface, or `all`. Repeatable.
+
+*-a, --addr* _NETADDR_::
+  Monitor traffic for an IPv4/IPv6 address. Repeatable.
+
+*-c, --cpu*::
+  Chart system CPU (overall and each core).
+
+*-m, --memory*::
+  Chart system memory and swap.
+
+*-T, --threads*::
+  Chart thread counts: currently alive, waiting (non-running), and total unique
+  threads opened during the session. With no _NAME_, charts system-wide totals.
+
+*-F, --numfd*::
+  Chart open file-descriptor counts for matched processes.
+
+*-C, --connections*::
+  Chart TCP/UDP connection counts: alive (established / present), wait (FIN /
+  TIME_WAIT / …), and total unique sockets seen. With no _NAME_, charts
+  system-wide `/proc/net` sockets.
+
+*-t, --interval* _D_::
+  Sample period (default: `2s`). Units: `ms`, `s`/`sec` (default), `m`/`min`, `h`.
+
+*-w, --window* _D_::
+  Default visible time span (default: `3min`). Must be ≥ interval.
+  Full session history is retained in memory; drag to pan and use the mouse
+  wheel to zoom (shared across all charts).
+
+*-o, --output* _PATH_::
+  Directory for interval logs (created if needed).
+
 *-v, --verbose*::
-  Print each file name (or ``standard input`` for *-*) to standard error
-  before copying that input.
-  Repeat for more verbose logging.
+  Increase logging verbosity.
 
 *-q, --quiet*::
-  Suppress messages that would be printed by *--verbose*.
-  If both *--verbose* and *--quiet* are given, *--quiet* wins.
+  Decrease logging verbosity.
 
 *-h, --help*::
   Print a usage summary and exit successfully.
@@ -41,13 +123,21 @@ inputs to standard output.
 *--version*::
   Print version and license information and exit successfully.
 
+== Examples
+
+....
+pidload editor
+pidload -c -m -o /tmp/pl -t 1s '*term*' firefox
+pidload -d nvme0n1 -i lo 1234
+....
+
 == Exit status
 
 *0*::
-  Success.
+  Success (including *--help* / *--version*).
 
 *1*::
-  An error occurred (invalid options, unreadable file, or I/O error).
+  Invalid options or startup failure.
 
 == Author
 

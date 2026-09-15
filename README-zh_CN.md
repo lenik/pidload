@@ -1,32 +1,48 @@
-本文件由模板生成。
-除项目名称和程序名称外，其余内容均为占位符。
-请根据当前项目的具体情况重写此文档。
-
 # pidload
 
-`pidload` 是一个简单的基于 Meson 的 **C 命令行** 模板（不含共享/静态库打包）。  
-`pidload` 是示例应用；可在 `meson.build` 的 `app_sources` 中继续添加应用。
+`pidload` 是面向 Linux 的 **wxWidgets** 进程与流量监视器。
+它在滑动时间窗口中绘制所选进程的 CPU/I/O，以及可选的块设备、网络、系统
+CPU/内存曲线，支持可停靠面板，并可按采样间隔写入日志。
 
-## 仓库结构
-
-- `src/` - 应用源码（`pidload.c`）与小型辅助模块（`commons.c`）
-- `tests/` - 最小化单元测试（不依赖 Check）
-- `debian/` - Debian 打包元数据
-- `docs/` - AsciiDoc man 页源文件
-- `meson.build` - 顶层构建定义
-
-## 示例应用：`pidload`
+## 用法
 
 ```bash
-pidload [OPTION]... [FILE]...
+pidload [OPTION]... [NAME]...
 ```
 
-类似 `cat`：将文件拼接输出到 stdout。支持 `-v`/`--verbose`、`-q`/`--quiet`、`-h`/`--help`、`--version`。
+每个 `NAME` 按以下方式匹配进程：pid、可执行名、路径、窗口标题，或通配符
+（`*`、`?`）。例如 `pidload editor` 可匹配 `/bin/editor` 以及标题为
+“Some Editor” 的窗口。
+
+多个进程使用不同线型（共 10 种，循环复用）；进程图有独立的进程图例可点击开关。
+
+### 选项
+
+| 选项 | 含义 |
+|------|------|
+| `-d`, `--dev DEVICE` | 块设备 I/O |
+| `-i`, `--iface NETDEV`/`all` | 网卡 |
+| `-a`, `--addr NETADDR` | 按地址 |
+| `-c`, `--cpu` | 系统 CPU（总体与每核） |
+| `-m`, `--memory` | 系统内存与交换 |
+| `-T`, `--threads` | 线程计数（存活 / 等待 / 累计打开） |
+| `-F`, `--numfd` | 打开的文件描述符数 |
+| `-C`, `--connections` | 网络连接（存活 / 等待 / 累计） |
+| `-t`, `--interval D` | 采样间隔（默认 `2s`） |
+| `-w`, `--window D` | 默认可视窗口（默认 `3min`）；会话历史保存在内存中 |
+| `-o`, `--output PATH` | 日志目录（`name.pid.log`） |
+| `-v` / `-q` / `-h` / `--version` | 详细、安静、帮助、版本 |
+
+在任一图表上拖动可平移共享时间视图，滚轮缩放（所有图表同步）。至少有一个图表
+在 X 轴显示经过时间标签。
+
+**View → Display Curve** 可选 Segment / Quadratic / Bicubic 插值。
+网络图右键菜单 **Display Unit** 可切换原始字节、载荷估算或包数量。
 
 ## 构建
 
 ```bash
-sudo apt install meson ninja-build gcc pkg-config asciidoctor
+sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev asciidoctor
 meson setup /build
 ninja -C /build
 meson test -C /build

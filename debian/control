@@ -2,7 +2,7 @@ Source: pidload
 Section: utils
 Priority: optional
 Maintainer: Lenik <pidload@bodz.net>
-Build-Depends: debhelper-compat (= 13), meson, ninja-build, pkgconf, libbas-c-dev, asciidoctor
+Build-Depends: debhelper-compat (= 13), meson, ninja-build, pkgconf, libbas-c-dev, libwxgtk3.2-dev, libx11-dev, asciidoctor
 Standards-Version: 4.6.0
 Homepage: https://github.com/lenik/pidload
 Rules-Requires-Root: no
@@ -12,7 +12,6 @@ Architecture: any
 Depends:
     ${shlibs:Depends},
     ${misc:Depends}
-Description: Simple C CLI project template with example app
- pidload is a Meson-based template for small C command-line utilities
- (no shared/static library packaging). It ships the pidload example
- application, AsciiDoc man pages, bash completion, and Debian packaging.
+Description: wxWidgets process and traffic monitor
+ pidload charts process CPU/I/O and selected block-device and network
+ traffic in a sliding window, with optional per-interval log recording.
