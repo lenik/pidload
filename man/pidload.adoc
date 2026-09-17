@@ -28,6 +28,14 @@ elapsed-time labels on the X axis.
 On network charts, the context menu *Display Unit* switches among raw size,
 payload size (wire bytes minus an Ethernet-header estimate), and packet counts.
 
+View layout and display toggles (enabled charts, legends, Y-log, show-as,
+curve style, refresh interval, window geometry, and AUI pane layout) are
+remembered per _NAME_ combination under
+`$XDG_CONFIG_HOME/pidload/<key>.state` (default `~/.config/pidload/`).
+The key is the SHA-1 of a UTF-8 string that classifies each _NAME_ as
+`path …`, `pid …`, or `glob …` (comma-separated). Explicit CLI flags such as
+*-c* / *-i* / *-t* override the saved values for that run.
+
 Each _NAME_ selects processes. Matching is tried as: pid, executable name,
 executable path, window title, then with glob characters (*`*`*, *`?`*) on
 executable name, path, and window title.

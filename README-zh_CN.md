@@ -39,10 +39,14 @@ pidload [OPTION]... [NAME]...
 **View → Display Curve** 可选 Segment / Bezier / Bicubic 插值。
 网络图右键菜单 **Display Unit** 可切换原始字节、载荷估算或包数量。
 
+视图布局与开关会按 `NAME` 组合记住，保存在
+`~/.config/pidload/<sha1>.state`（密钥为分类后的 `path`/`pid`/`glob` 的 SHA-1）。
+显式命令行选项会在本次运行中覆盖已保存的值。
+
 ## 构建
 
 ```bash
-sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev asciidoctor
+sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev libssl-dev asciidoctor
 meson setup /build
 ninja -C /build
 meson test -C /build

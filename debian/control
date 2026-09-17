@@ -2,7 +2,7 @@ Source: pidload
 Section: utils
 Priority: optional
 Maintainer: Lenik <pidload@bodz.net>
-Build-Depends: debhelper-compat (= 13), meson, ninja-build, pkgconf, libbas-c-dev, libwxgtk3.2-dev, libx11-dev, asciidoctor
+Build-Depends: debhelper-compat (= 13), meson, ninja-build, pkgconf, libbas-c-dev, libwxgtk3.2-dev, libx11-dev, libssl-dev, asciidoctor
 Standards-Version: 4.6.0
 Homepage: https://github.com/lenik/pidload
 Rules-Requires-Root: no

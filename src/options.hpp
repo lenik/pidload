@@ -55,6 +55,15 @@ struct Options {
     ChartShowAs show_as = ChartShowAs::Curve;
     CurveStyle curve_style = CurveStyle::Segment;
     NetDisplayUnit net_unit = NetDisplayUnit::RawSize;
+
+    /* True when the corresponding CLI flag was given (overrides saved view state). */
+    bool cli_cpu = false;
+    bool cli_memory = false;
+    bool cli_threads = false;
+    bool cli_numfd = false;
+    bool cli_connections = false;
+    bool cli_iface = false;
+    bool cli_interval = false;
 };
 
 /* Parse argv. Returns 0 on success, 1 on error, 2 if help/version already handled. */

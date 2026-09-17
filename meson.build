@@ -57,6 +57,7 @@ bas_args = ['-DLOGGER_NAME=' + meson.project_name(), '-DTEXT_DOMAIN=' + meson.pr
 
 wx_dep = dependency('wxwidgets', version: '>=3.0', required: true, modules: ['std', 'aui'])
 x11_dep = dependency('x11', required: true)
+crypto_dep = dependency('libcrypto', required: true)
 
 inc = include_directories('src', '.')
 
@@ -67,6 +68,7 @@ pidload_sources = [
     'src/options.cpp',
     'src/util.cpp',
     'src/process_match.cpp',
+    'src/view_state.cpp',
     'src/collector.cpp',
     'src/recorder.cpp',
     'src/chart_panel.cpp',
@@ -78,7 +80,7 @@ executable(
     'pidload',
     pidload_sources,
     include_directories: inc,
-    dependencies: [bas_c_dep, wx_dep, x11_dep],
+    dependencies: [bas_c_dep, wx_dep, x11_dep, crypto_dep],
     cpp_args: bas_args,
     install: true,
     install_dir: bindir,

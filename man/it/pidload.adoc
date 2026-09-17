@@ -28,6 +28,15 @@ etichette del tempo trascorso sull'asse X.
 Sui grafici di rete, il menu contestuale *Unità di visualizzazione* commuta tra dimensioni grezze,
 dimensione del carico utile (byte di filo meno una stima dell'intestazione Ethernet) e conteggio dei pacchetti.
 
+Layout e opzioni di visualizzazione (grafici abilitati, legende, Y-log, modalità
+di visualizzazione, stile curva, intervallo di aggiornamento, geometria della
+finestra e layout dei riquadri AUI) vengono ricordati per combinazione di
+_NAME_ in `$XDG_CONFIG_HOME/pidload/<key>.state` (predefinito
+`~/.config/pidload/`). La chiave è lo SHA-1 di una stringa UTF-8 che classifica
+ogni _NAME_ come `path …`, `pid …` o `glob …` (separati da virgole). Flag CLI
+espliciti come *-c* / *-i* / *-t* sovrascrivono i valori salvati per
+quell'esecuzione.
+
 Ciascun _NAME_ seleziona i processi. La corrispondenza viene tentata come: pid, nome dell'eseguibile,
 percorso dell'eseguibile, titolo della finestra, quindi con caratteri glob (*`*`*, *`?`*) su
 nome dell'eseguibile, percorso e titolo della finestra.

@@ -1,3 +1,15 @@
+pidload (0.0.3) unstable; urgency=medium
+
+  * Remember view layout and toggles per NAME combination under
+    ~/.config/pidload/<sha1>.state.
+  * Classify each NAME as path/pid/glob; key is utf8sha1 of the comma-
+    joined classifications.
+  * CLI flags -c/-m/-T/-F/-C/-i/-t override saved view state for that
+    run.
+  * Build with libssl (SHA-1); mkdir -p for config/output directories.
+
+ -- Lenik (谢继雷) <lenik@bodz.net>  Thu, 17 Sep 2026 14:44:25 +0800
+
 pidload (0.0.2) unstable; urgency=medium
 
   * Add gettext catalogs for L1 locales (ar, de, en, es_MX, fr, it, ja, ko,

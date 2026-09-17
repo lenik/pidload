@@ -7,7 +7,10 @@
 #include "main_frame.hpp"
 #include "config.h"
 #include "dialogs.hpp"
+#include "view_state.hpp"
 #include "wx_tr.hpp"
+
+#include <bas/log/uselog.h>
 
 #include <wx/aboutdlg.h>
 #include <wx/artprov.h>
@@ -38,6 +41,22 @@ static void set_item_bitmap(wxMenuItem *item, const wxArtID &id) {
 MainFrame::MainFrame(const Options &opt)
     : wxFrame(nullptr, wxID_ANY, "pidload", wxDefaultPosition, wxSize(1100, 720)),
       opt_(opt) {
+    state_path_ = view_state_path_for_names(opt_.names);
+    ViewState loaded;
+    if (load_view_state(state_path_, loaded)) {
+        apply_view_state(opt_, loaded);
+        aui_perspective_ = loaded.aui_perspective;
+        if (loaded.frame_w > 200 && loaded.frame_h > 150) {
+            SetSize(loaded.frame_w, loaded.frame_h);
+        }
+        if (loaded.have_frame_pos) {
+            SetPosition(wxPoint(loaded.frame_x, loaded.frame_y));
+        }
+        std::string material = view_state_key_material(opt_.names);
+        loginfo_fmt("restored view state key=%s file=%s",
+                    utf8sha1_hex(material).c_str(), state_path_.c_str());
+    }
+
     collector_ = std::make_unique<Collector>(opt_);
     recorder_ = std::make_unique<Recorder>(opt_);
     if (!recorder_->ok()) {
@@ -232,6 +251,13 @@ void MainFrame::SyncViewMenu() {
 }
 
 void MainFrame::RebuildPanes() {
+    if (!panels_.empty()) {
+        wxString persp = aui_.SavePerspective();
+        if (!persp.empty()) {
+            aui_perspective_ = persp.ToStdString();
+        }
+    }
+
     for (auto &kv : panels_) {
         aui_.DetachPane(kv.second);
         kv.second->Hide();
@@ -259,12 +285,21 @@ void MainFrame::RebuildPanes() {
 
     AssignTimeAxis();
     ApplyDefaultLayout();
+    ApplySavedPerspective();
     if (!charts.empty()) {
         active_chart_id_ = charts.front().id;
     } else {
         active_chart_id_.clear();
         SetStatusText(tr("No charts — use View → Add… or enable CPU/Memory/Network/…"));
     }
+}
+
+void MainFrame::ApplySavedPerspective() {
+    if (aui_perspective_.empty() || panels_.empty()) {
+        return;
+    }
+    aui_.LoadPerspective(wxString::FromUTF8(aui_perspective_.c_str()), true);
+    aui_.Update();
 }
 
 void MainFrame::AssignTimeAxis() {
@@ -437,8 +472,59 @@ void MainFrame::OnTimer(wxTimerEvent &) {
     RefreshAllCharts();
 }
 
+void MainFrame::PersistViewState() {
+    if (state_path_.empty()) {
+        return;
+    }
+    ViewState st;
+    capture_view_state_from_options(collector_ ? collector_->options() : opt_, st);
+
+    /* Prefer live panel values (context menu may not sync Options). */
+    if (!panels_.empty()) {
+        auto *p = panels_.begin()->second;
+        st.show_legends = p->show_legends();
+        st.y_log = p->y_log();
+        st.show_as = p->show_as();
+        st.curve_style = p->curve_style();
+        opt_.show_legends = st.show_legends;
+        opt_.y_log = st.y_log;
+        opt_.show_as = st.show_as;
+        opt_.curve_style = st.curve_style;
+        for (auto &kv : panels_) {
+            if (kv.second->spec().type == ChartType::Network) {
+                st.net_unit = kv.second->net_unit();
+                opt_.net_unit = st.net_unit;
+                break;
+            }
+        }
+    } else {
+        st.show_legends = opt_.show_legends;
+        st.y_log = opt_.y_log;
+        st.show_as = opt_.show_as;
+        st.curve_style = opt_.curve_style;
+        st.net_unit = opt_.net_unit;
+    }
+
+    wxSize sz = GetSize();
+    st.frame_w = sz.GetWidth();
+    st.frame_h = sz.GetHeight();
+    wxPoint pos = GetPosition();
+    st.frame_x = pos.x;
+    st.frame_y = pos.y;
+    st.have_frame_pos = true;
+    wxString persp = aui_.SavePerspective();
+    if (!persp.empty()) {
+        st.aui_perspective = persp.ToStdString();
+        aui_perspective_ = st.aui_perspective;
+    } else {
+        st.aui_perspective = aui_perspective_;
+    }
+    save_view_state(state_path_, st);
+}
+
 void MainFrame::OnClose(wxCloseEvent &event) {
     timer_.Stop();
+    PersistViewState();
     event.Skip();
 }
 
@@ -661,6 +747,7 @@ void MainFrame::OnInterval(wxCommandEvent &event) {
 }
 
 void MainFrame::OnResetLayout(wxCommandEvent &) {
+    aui_perspective_.clear();
     ApplyDefaultLayout();
 }
 

@@ -85,13 +85,41 @@ bool ensure_directory(const std::string &path) {
     if (stat(path.c_str(), &st) == 0) {
         return S_ISDIR(st.st_mode);
     }
-    if (mkdir(path.c_str(), 0755) == 0) {
-        return true;
+
+    /* mkdir -p: create each path segment. */
+    std::string cur;
+    for (size_t i = 0; i < path.size(); ++i) {
+        cur.push_back(path[i]);
+        if (path[i] != '/' && i + 1 != path.size()) {
+            continue;
+        }
+        /* Ignore the root slash alone. */
+        if (cur == "/") {
+            continue;
+        }
+        std::string dir = cur;
+        if (!dir.empty() && dir.back() == '/') {
+            dir.pop_back();
+        }
+        if (dir.empty()) {
+            continue;
+        }
+        if (stat(dir.c_str(), &st) == 0) {
+            if (!S_ISDIR(st.st_mode)) {
+                return false;
+            }
+            continue;
+        }
+        if (mkdir(dir.c_str(), 0755) != 0) {
+            if (errno != EEXIST) {
+                return false;
+            }
+            if (!(stat(dir.c_str(), &st) == 0 && S_ISDIR(st.st_mode))) {
+                return false;
+            }
+        }
     }
-    if (errno == EEXIST) {
-        return stat(path.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
-    }
-    return false;
+    return stat(path.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
 }
 
 std::vector<std::string> list_net_ifaces() {

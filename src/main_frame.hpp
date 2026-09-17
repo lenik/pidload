@@ -12,6 +12,7 @@
 #include "options.hpp"
 #include "recorder.hpp"
 #include "time_view.hpp"
+#include "view_state.hpp"
 
 #include <wx/aui/framemanager.h>
 #include <wx/frame.h>
@@ -61,12 +62,14 @@ private:
     void BuildMenu();
     void RebuildPanes();
     void ApplyDefaultLayout();
+    void ApplySavedPerspective();
     void SyncViewMenu();
     void ApplyShowAsToAll(ChartShowAs mode);
     void ApplyCurveStyleToAll(CurveStyle style);
     void SetIntervalMs(int64_t ms);
     void RefreshAllCharts();
     void AssignTimeAxis();
+    void PersistViewState();
     ChartPanel *FocusedPanel();
 
     void OnTimer(wxTimerEvent &event);
@@ -94,6 +97,8 @@ private:
     void OnAbout(wxCommandEvent &event);
 
     Options opt_;
+    std::string state_path_;
+    std::string aui_perspective_;
     std::unique_ptr<Collector> collector_;
     std::unique_ptr<Recorder> recorder_;
     TimeView time_view_;

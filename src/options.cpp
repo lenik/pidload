@@ -103,6 +103,7 @@ int parse_options(int argc, char **argv, Options &opt) {
                 opt.iface_all = false;
                 iface_seen = true;
             }
+            opt.cli_iface = true;
             opt.iface_explicit = true;
             opt.monitor_network = true;
             if (strcmp(optarg, "all") == 0) {
@@ -117,18 +118,23 @@ int parse_options(int argc, char **argv, Options &opt) {
             opt.addrs.emplace_back(optarg);
             break;
         case 'c':
+            opt.cli_cpu = true;
             opt.show_cpu = true;
             break;
         case 'm':
+            opt.cli_memory = true;
             opt.show_memory = true;
             break;
         case 'T':
+            opt.cli_threads = true;
             opt.show_threads = true;
             break;
         case 'F':
+            opt.cli_numfd = true;
             opt.show_numfd = true;
             break;
         case 'C':
+            opt.cli_connections = true;
             opt.show_connections = true;
             break;
         case 't': {
@@ -137,6 +143,7 @@ int parse_options(int argc, char **argv, Options &opt) {
                 fprintf(stderr, _("pidload: invalid interval: %s\n"), optarg);
                 return 1;
             }
+            opt.cli_interval = true;
             opt.interval_ms = ms;
             break;
         }

@@ -28,6 +28,15 @@ pour zoomer (tous les graphiques partagent la même vue temporelle). Au moins un
 Sur les cartes de réseau, le menu contextuel *Unité d'affichage* bascule entre la taille brute,
 taille de la charge utile (octets de fil moins une estimation de l'en-tête Ethernet) et nombre de paquets.
 
+La disposition et les options d'affichage (graphiques activés, légendes, Y-log,
+mode d'affichage, style de courbe, intervalle de rafraîchissement, géométrie de
+fenêtre et disposition des panneaux AUI) sont mémorisées par combinaison de
+_NAME_ sous `$XDG_CONFIG_HOME/pidload/<key>.state` (par défaut
+`~/.config/pidload/`). La clé est le SHA-1 d'une chaîne UTF-8 qui classe chaque
+_NAME_ en `path …`, `pid …` ou `glob …` (séparés par des virgules). Les options
+explicites telles que *-c* / *-i* / *-t* remplacent les valeurs enregistrées
+pour cette exécution.
+
 Chaque _NAME_ sélectionne des processus. La correspondance est tentée comme : pid, nom de l'exécutable,
 chemin de l'exécutable, titre de la fenêtre, puis avec des caractères globaux (*`*`*, *`?`*) sur
 nom de l'exécutable, chemin et titre de la fenêtre.

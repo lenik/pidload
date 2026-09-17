@@ -42,6 +42,10 @@ in sync). At least one chart shows elapsed-time labels on the X axis.
 On a network chart, the context menu **Display Unit** switches raw size,
 payload size (wire minus Ethernet header estimate), or packet counts.
 
+View layout and toggles are remembered per `NAME` combination under
+`~/.config/pidload/<sha1>.state` (key = SHA-1 of classified `path`/`pid`/`glob`
+tokens). Explicit CLI flags override the saved values for that run.
+
 ### Recording
 
 With `-o /tmp/prefix`:
@@ -56,7 +60,7 @@ With `-o /tmp/prefix`:
 ## Build
 
 ```bash
-sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev asciidoctor
+sudo apt install meson ninja-build g++ pkg-config libbas-c-dev libwxgtk3.2-dev libx11-dev libssl-dev asciidoctor
 meson setup /build
 ninja -C /build
 meson test -C /build

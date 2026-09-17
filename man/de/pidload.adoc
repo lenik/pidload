@@ -28,6 +28,15 @@ Beschriftungen der verstrichenen Zeit auf der X-Achse.
 Bei Netzwerkdiagrammen wechselt das Kontextmenü *Anzeigeeinheit* zwischen Rohgröße,
 Nutzlastgröße (Drahtbytes abzüglich einer Ethernet-Header-Schätzung) und Paketanzahl.
 
+Ansichtslayout und Anzeigeoptionen (aktivierte Diagramme, Legenden, Y-Log,
+Darstellungsart, Kurvenstil, Aktualisierungsintervall, Fenstergeometrie und
+AUI-Bereichslayout) werden pro _NAME_-Kombination unter
+`$XDG_CONFIG_HOME/pidload/<key>.state` (Standard `~/.config/pidload/`) gespeichert.
+Der Schlüssel ist der SHA-1 eines UTF-8-Strings, der jedes _NAME_ als
+`path …`, `pid …` oder `glob …` klassifiziert (kommagetrennt). Explizite
+CLI-Schalter wie *-c* / *-i* / *-t* überschreiben die gespeicherten Werte
+für diesen Lauf.
+
 Jeder _NAME_ wählt Prozesse aus. Der Abgleich wird wie folgt versucht: PID, Name der ausführbaren Datei,
 ausführbarer Pfad, Fenstertitel, dann mit Glob-Zeichen (*`*`*, *`?`*) an
 Name, Pfad und Fenstertitel der ausführbaren Datei.

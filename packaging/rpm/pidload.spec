@@ -21,6 +21,7 @@ BuildRequires:  asciidoctor
 BuildRequires:  libbas-c-devel
 BuildRequires:  wxGTK3-devel
 BuildRequires:  libX11-devel
+BuildRequires:  openssl-devel
 
 %description
 pidload charts process CPU/I/O and selected block-device and network

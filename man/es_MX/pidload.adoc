@@ -28,6 +28,15 @@ etiquetas de tiempo transcurrido en el eje X.
 En los gráficos de red, el menú contextual *Unidad de visualización* cambia entre tamaño sin formato,
 tamaño de carga útil (bytes de cable menos una estimación del encabezado Ethernet) y recuento de paquetes.
 
+La disposición y las opciones de vista (gráficos habilitados, leyendas, Y-log,
+modo de visualización, estilo de curva, intervalo de actualización, geometría
+de la ventana y disposición de paneles AUI) se recuerdan por combinación de
+_NAME_ en `$XDG_CONFIG_HOME/pidload/<key>.state` (predeterminado
+`~/.config/pidload/`). La clave es el SHA-1 de una cadena UTF-8 que clasifica
+cada _NAME_ como `path …`, `pid …` o `glob …` (separados por comas). Indicadores
+CLI explícitos como *-c* / *-i* / *-t* anulan los valores guardados en esa
+ejecución.
+
 Cada _NOMBRE_ selecciona procesos. La coincidencia se intenta como: pid, nombre del ejecutable,
 ruta ejecutable, título de la ventana, luego con caracteres globales (*`*`*, *`?`*) en
 nombre del ejecutable, ruta y título de la ventana.
